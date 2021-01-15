@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "Hpw6YhHrJYt3gyGtGtQBWIxMsa8mS81eGELFND6K5CUyvmjVALYOAcJ1cUAjdHQlBLO7W95wEaszODcfeAW9Hg==",
+=======
+  "dgSpecHash": "HeVzm/drRw8RwKGYujvIk64gaY0PBrMbzGdRl1scbS4wwb6TiGvvh494YBUF4GJ7+P2MsLyfhzALSKp+2no3SA==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
   "expectedPackageFiles": [
