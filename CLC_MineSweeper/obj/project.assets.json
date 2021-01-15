@@ -656,25 +656,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\monca\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\TJames42\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
+      "projectUniqueName": "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
       "projectName": "CLC_MineSweeper",
-      "projectPath": "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
-      "packagesPath": "C:\\Users\\monca\\.nuget\\packages\\",
-      "outputPath": "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\obj\\",
+      "projectPath": "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
+      "packagesPath": "C:\\Users\\TJames42\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\monca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TJames42\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -687,6 +685,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -698,6 +697,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
             "target": "Package",
@@ -722,7 +722,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
