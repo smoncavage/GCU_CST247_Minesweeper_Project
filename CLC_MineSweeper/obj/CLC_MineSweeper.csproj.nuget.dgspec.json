@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj": {}
+    "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj": {
+    "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
+        "projectUniqueName": "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
         "projectName": "CLC_MineSweeper",
-        "projectPath": "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
-        "packagesPath": "C:\\Users\\TJames42\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\obj\\",
+        "projectPath": "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\CLC_MineSweeper.csproj",
+        "packagesPath": "C:\\Users\\monca\\.nuget\\packages\\",
+        "outputPath": "C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MineSweeper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\TJames42\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\monca\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
