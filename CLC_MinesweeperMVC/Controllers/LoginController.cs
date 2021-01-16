@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ActionResult = System.Web.Mvc.ActionResult;
+using Controller = System.Web.Mvc.Controller;
+using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
 
 namespace CLC_MinesweeperMVC.Controllers
 {

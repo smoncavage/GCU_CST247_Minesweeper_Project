@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegisterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Test.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="FIRSTNAME" />
+      <PropertyRef Name="LASTNAME" />
+      <PropertyRef Name="ADDRESS" />
+      <PropertyRef Name="STATE" />
+      <PropertyRef Name="ZIPCODE" />
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="USERNAME" />
+      <PropertyRef Name="PASSWORD" />
+      <PropertyRef Name="IsEmailVerified" />
+      <PropertyRef Name="ActivationCode" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LASTNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GENDER" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="STATE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ZIPCODE" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+    <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="RegisterModelStoreContainer">
+    <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Users].[Id] AS [Id], 
+    [Users].[FIRSTNAME] AS [FIRSTNAME], 
+    [Users].[LASTNAME] AS [LASTNAME], 
+    [Users].[GENDER] AS [GENDER], 
+    [Users].[DateOfBirth] AS [DateOfBirth], 
+    [Users].[ADDRESS] AS [ADDRESS], 
+    [Users].[STATE] AS [STATE], 
+    [Users].[ZIPCODE] AS [ZIPCODE], 
+    [Users].[EMAIL] AS [EMAIL], 
+    [Users].[USERNAME] AS [USERNAME], 
+    [Users].[PASSWORD] AS [PASSWORD], 
+    [Users].[IsEmailVerified] AS [IsEmailVerified], 
+    [Users].[ActivationCode] AS [ActivationCode]
+    FROM [dbo].[Users] AS [Users]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
