@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ActionResult = System.Web.Mvc.ActionResult;
 using Controller = System.Web.Mvc.Controller;
 using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
+using HttpPostAttribute = System.Web.Mvc.HttpPostAttribute;
 
 namespace CLC_MinesweeperMVC.Controllers
 {
@@ -20,18 +21,24 @@ namespace CLC_MinesweeperMVC.Controllers
             return View("Login");
         }
 
+        [HttpPost]
         // Check for valid login credentials
-        public ActionResult Login(UserModel user) {
-            SecurityService auth = new SecurityService();
+        public ActionResult Login(User user) {
+            //SecurityService auth = new SecurityService();
+            //return auth.Authenticate(user) ? View("LoginPassed") : View("LoginFailed");
 
-            bool result = auth.Authenticate(user);
-
-            if(result) {
-                return View("LoginPassed");
+            // this action is for handle post (login)
+            if(ModelState.IsValid) // this is check validity
+            {
+                using(MyDBEntities dc = new MyDBEntities()) {
+                    var v = dc.Users.Where(a => a.USERNAME.Equals(user.USERNAME)&&a.PASSWORD.Equals(user.PASSWORD)).FirstOrDefault();
+                    if(v!=null) {
+                        
+                        return View("LoginPassed");
+                    }
+                }
             }
-            else {
-                return View("LoginFailed");
-            }
+            return View("LoginFailed");
         }
     }
 }

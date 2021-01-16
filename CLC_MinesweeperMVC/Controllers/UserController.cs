@@ -39,16 +39,19 @@ namespace CLC_MinesweeperMVC.Controllers{
                 #region Generate Activation Code 
                 user.ActivationCode=Guid.NewGuid();
                 #endregion
-                try{
-                #region  Password Hashing 
-                user.PASSWORD=Crypto.Hash(user.PASSWORD);
-                user.ConfirmPassword=Crypto.Hash(user.ConfirmPassword); //
-                }
-                catch (Exception e) {
-                    Console.WriteLine("Failed to Hash Password!");
-                    Console.WriteLine(e.Message);
-                }
-                #endregion
+                
+                //Hashing Password for storing in DB, But this is not yet fully functional with log in. 
+
+                //try{
+                //#region  Password Hashing 
+                //user.PASSWORD=Crypto.Hash(user.PASSWORD);
+                //user.ConfirmPassword=Crypto.Hash(user.ConfirmPassword); //
+                //}
+                //catch (Exception e) {
+                //   Console.WriteLine("Failed to Hash Password!");
+                //    Console.WriteLine(e.Message);
+                //}
+                //#endregion
                 user.IsEmailVerified=true;
                 try {
                 #region Save to Database

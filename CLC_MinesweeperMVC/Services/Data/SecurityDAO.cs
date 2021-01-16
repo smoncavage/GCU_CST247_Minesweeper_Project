@@ -8,23 +8,19 @@ using System.Web;
 
 namespace CLC_MinesweeperMVC.Services.Data {
     public class SecurityDAO {
-        public bool FindByUser(UserModel user) {
+        public bool FindByUser(User user) {
 
-            //string connectionString = "Server=(localdb)\\MSSQLLocalDB; Initial Catalog=MinesweeperApp; Integrated Security=true; Trusted_Connection=yes;";
-            SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UsersDBContext"].ConnectionString);
-            //MyDBEntities
+            string connectionString = "Server=(localdb)\\MSSQLLocalDB; Initial Catalog=MinesweeperApp; Integrated Security=true; Trusted_Connection=yes;";
             string query = "SELECT * FROM dbo.Users WHERE username=@username AND password=@password";
 
-            //using(SqlConnection connection = new SqlConnection(connectionString)) {
+            using(SqlConnection connection = new SqlConnection(connectionString)) {
 
-                //SqlCommand command = new SqlCommand(query, connection);
-                SqlCommand command = new SqlCommand(query, sqlConnect);
+                SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Clear();
-                command.Parameters.AddWithValue("@username", user.username);
-                command.Parameters.AddWithValue("@password", user.password);
+                command.Parameters.AddWithValue("@username", user.USERNAME);
+                command.Parameters.AddWithValue("@password", user.PASSWORD);
                 try {
-                //connection.Open();
-                sqlConnect.Open();
+                connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
                     if(reader.HasRows) {
@@ -38,10 +34,10 @@ namespace CLC_MinesweeperMVC.Services.Data {
                     Console.WriteLine(ex.Message);
                     return false;
                 }
-            //}
+            }
         }
 
-        public bool AddUser(UserModel user) {
+        public bool AddUser(User user) {
 
             return false;
         }

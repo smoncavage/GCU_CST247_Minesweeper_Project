@@ -7,7 +7,7 @@ using System.Web;
 
 namespace CLC_MinesweeperMVC.Services.Business {
     public class SecurityService {
-        public bool Authenticate(UserModel user) {
+        public bool Authenticate(User user) {
             SecurityDAO service = new SecurityDAO();
 
             return service.FindByUser(user);

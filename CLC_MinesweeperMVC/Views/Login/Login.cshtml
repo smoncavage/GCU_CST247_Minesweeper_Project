@@ -1,18 +1,18 @@
 ﻿@using CLC_MinesweeperMVC.Models
-@model UserModel
+@model User
 
 <h2>Login</h2>
 
 @using(Html.BeginForm("Login", "Login", FormMethod.Post)) {
-    <span>Enter Your Userame:</span> @Html.TextBoxFor(UserModel => UserModel.username)
+    <span>Enter Your Userame:</span> @Html.TextBoxFor(UserModel => UserModel.USERNAME)
     <br />
-    <span>Enter Your Password: </span> @Html.TextBoxFor(UserModel => UserModel.password)
+    <span>Enter Your Password: </span> @Html.PasswordFor(UserModel => UserModel.PASSWORD)
     <br />
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Login" class="btn btn-default" />
-            <br/>
+            <br />
             <input type="submit" value="Register" class="btn btn-default" formaction="/User/Registration" />
         </div>
     </div>
