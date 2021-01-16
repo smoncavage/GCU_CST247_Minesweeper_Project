@@ -35,5 +35,10 @@ namespace CLC_MinesweeperMVC.Services.Data {
                 }
             }
         }
+
+        public bool AddUser(UserModel user) {
+
+            return false;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace CLC_MinesweeperMVC.Controllers
     {
         // GET: Login
         [HttpGet]
-        public IActionResult Login() {
+        public ActionResult Login() {
             return View("Login");
         }
 
