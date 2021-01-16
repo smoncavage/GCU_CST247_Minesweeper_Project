@@ -20,7 +20,7 @@ namespace CLC_MinesweeperMVC.Controllers{
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Registration([Bind(Exclude = "IsEmailVerified,ActivationCode")] User user) {
             bool Status = false;
             string message = "";
