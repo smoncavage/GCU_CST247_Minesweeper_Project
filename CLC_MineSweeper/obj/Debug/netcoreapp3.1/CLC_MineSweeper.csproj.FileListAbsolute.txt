@@ -351,3 +351,12 @@ D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\obj\Debug\netcoreapp3.1\CLC_Min
 D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\obj\Debug\netcoreapp3.1\CLC_MineSweeper.dll
 D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\obj\Debug\netcoreapp3.1\CLC_MineSweeper.pdb
 D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\obj\Debug\netcoreapp3.1\CLC_MineSweeper.genruntimeconfig.cache
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\obj\Debug\netcoreapp3.1\Razor\Views\Login\LoginFailed.cshtml.g.cs
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MineSweeper\obj\Debug\netcoreapp3.1\Razor\Views\Login\LoginPassed.cshtml.g.cs
