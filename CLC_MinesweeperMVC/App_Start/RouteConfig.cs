@@ -23,7 +23,7 @@ namespace CLC_MinesweeperMVC {
             routes.MapRoute(
                 name: "Registration",
                 url: "{Registration}",
-                defaults: new { controller = "User", action = "Registration", id = UrlParameter.Optional }
+                defaults: new { controller = "Registration", action = "User", id = UrlParameter.Optional }
             );
         }
     }

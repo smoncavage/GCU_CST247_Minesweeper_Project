@@ -16,7 +16,7 @@ namespace CLC_MinesweeperMVC.Controllers{
         // GET: Register
         [HttpGet]
         public ActionResult Registration(){
-            return View();
+            return View("Registration");
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                     Console.WriteLine(e.Message);
                 }
                 #endregion
-                user.IsEmailVerified=false;
+                user.IsEmailVerified=true;
                 try {
                 #region Save to Database
                 using(MyDBEntities dc = new MyDBEntities()) {
@@ -59,7 +59,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                     //Send Email to User
                     SendVerificationLinkEmail(user.EMAIL, user.ActivationCode.ToString());
                     message="Registration successfully done. Account activation link "+
-                        " has been sent to your email id:"+user.EMAIL;
+                        " has been sent to your email: "+user.EMAIL;
                     Status=true;
                 }
                     #endregion
@@ -74,7 +74,8 @@ namespace CLC_MinesweeperMVC.Controllers{
 
             ViewBag.Message=message;
             ViewBag.Status=Status;
-            return View(user);
+            // return View(user);
+            return View("Registration");
         }
         public bool IsEmailExist(string email) {
             using(MyDBEntities dc = new MyDBEntities()) {
@@ -88,12 +89,12 @@ namespace CLC_MinesweeperMVC.Controllers{
                 return v!=null;
             }
         }
-        public void SendVerificationLinkEmail(string emailID, string activationCode) {
+        public void SendVerificationLinkEmail(string email, string activationCode) {
             var verifyUrl = "/User/VerifyAccount/"+activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
             var fromEmail = new MailAddress("dotnetawesome@gmail.com", "Dotnet Awesome");
-            var toEmail = new MailAddress(emailID);
+            var toEmail = new MailAddress(email);
             var fromEmailPassword = "********"; // Replace with actual password
             string subject = "Your account is successfully created!";
 
@@ -115,7 +116,12 @@ namespace CLC_MinesweeperMVC.Controllers{
                 Body=body,
                 IsBodyHtml=true
             })
+                try{
                 smtp.Send(message);
+                }
+                catch(Exception e) {
+                    Console.WriteLine(e.Message);
+                }
         }
     }
 }

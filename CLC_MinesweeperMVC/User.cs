@@ -28,6 +28,7 @@ namespace CLC_MinesweeperMVC
         public bool IsEmailVerified { get; set; }
         public System.Guid ActivationCode { get; set; }
         public string ConfirmPassword { get; set; }
+        public bool IsUserVerified { get; internal set; }
     }
     public class UserMetadata {
         [Display(Name = "First Name")]
