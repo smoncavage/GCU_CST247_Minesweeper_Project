@@ -183,3 +183,12 @@ C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\Microsoft.Extensions.W
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\Newtonsoft.Json.Bson.xml
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\System.Threading.Tasks.Extensions.xml
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\AngleSharp.dll
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\EO.Base.dll
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\EO.WebBrowser.dll
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\EO.WebEngine.dll
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\System.Text.Encoding.CodePages.dll
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\AngleSharp.xml
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\EO.Base.xml
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\EO.WebBrowser.xml
+C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\EO.WebEngine.xml

@@ -1,0 +1,23 @@
+﻿@model CLC_MinesweeperMVC.Models.GameModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Difficulty Select</title>
+</head>
+<body>
+    <div style="text-align:center">
+        @Html.Label("Please Select Difficulty", new { style = "text-align:center; font-family:arial; font-size:24px; font-weight:bold" })
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Start Game", "MineSweep")
+    </div>
+</body>
+</html>

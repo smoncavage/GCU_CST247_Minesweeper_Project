@@ -1,4 +1,4 @@
-﻿@model CLC_MinesweeperMVC.Models.GameModel
+﻿@model List<CLC_MinesweeperMVC.Models.ButtonModel>
 
 @{
     Layout = null;
@@ -12,7 +12,27 @@
     <title>MineSweep</title>
 </head>
 <body>
-    <div> 
+    <div style="text-align:center">
+        @using(Html.BeginForm("OnButtonClick", "MineSweep", FormMethod.Post)) {
+            <button id="mine" type="submit" name="mine" value="1">
+                @if(Model[0].State) {
+                    <img src="~/Images/bomnb.bmp" />
+                }
+                else {
+                    <img src="~/Images/checkered_flag.bmp"/>
+                }
+            </button>
+            <br />
+            <button id="mine" type="submit" name="mine" value="2">
+                @if(Model[1].State) {
+                    <img src="~/Images/bomnb.bmp" />
+                }
+                else {
+                    <img src="~/Images/checkered_flag.bmp" />
+                }
+            </button>
+        }
+
     </div>
 </body>
 </html>
