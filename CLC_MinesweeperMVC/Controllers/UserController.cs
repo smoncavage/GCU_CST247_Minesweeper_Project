@@ -60,7 +60,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                     dc.SaveChanges();
 
                     //Send Email to User
-                    SendVerificationLinkEmail(user.EMAIL, user.ActivationCode.ToString());
+                    //SendVerificationLinkEmail(user.EMAIL, user.ActivationCode.ToString());
                     message="Registration successfully done. Account activation link "+
                         " has been sent to your email: "+user.EMAIL;
                     Status=true;
@@ -92,7 +92,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                 return v!=null;
             }
         }
-        public void SendVerificationLinkEmail(string email, string activationCode) {
+        /*public void SendVerificationLinkEmail(string email, string activationCode) {
             var verifyUrl = "/User/VerifyAccount/"+activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
@@ -125,6 +125,6 @@ namespace CLC_MinesweeperMVC.Controllers{
                 catch(Exception e) {
                     Console.WriteLine(e.Message);
                 }
-        }
+        }*/
     }
 }
