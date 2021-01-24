@@ -8,18 +8,21 @@ using CLC_MinesweeperMVC.Models;
 namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
 
-        static BoardModel myBoard;
+        BoardModel myBoard;
         public static int Difficulty = 1;
-        static List<ButtonModel> buttons = new List<ButtonModel>();
+        private static List<BoardModel> buttons = new List<BoardModel>();
         public  bool isWon;
         public ButtonModel[,] btnGrid = new ButtonModel[Difficulty*10, Difficulty*10];
 
         // GET: Button
         public ActionResult Index() {
             ViewBag.message=Difficulty;
-            buttons.Add(new ButtonModel(true));
-            buttons.Add(new ButtonModel(true));
-            myBoard.populateGrid();
+            for(int cl = 0; cl<Difficulty*10; cl++) {
+                for(int rw = 0; rw<Difficulty*10; rw++) {
+                    buttons.Add(new BoardModel(true));
+                }
+            }
+            //myBoard.populateGrid();
             return View("MineSweep", buttons);
         }
         // GET: Game
@@ -30,21 +33,18 @@ namespace CLC_MinesweeperMVC.Controllers{
         [HttpPost]
         public ActionResult OnButtonClick(string mine) {
             ViewBag.message=Difficulty;
-
-            if(mine=="1") {
-                if(buttons[0].State) {
-                    buttons[0].State=false;
-                }
-                else {
-                    buttons[0].State=true;
-                }
-            }
-            if(mine=="2") {
-                if(buttons[1].State) {
-                    buttons[1].State=false;
-                }
-                else {
-                    buttons[1].State=true;
+            int count = -1;
+            for(int cl=0; cl<Difficulty*10; cl++) {
+                for(int rw = 0; rw<Difficulty*10; rw++) {
+                    count++;
+                    if(mine==(1+count).ToString()) {
+                        if(buttons[count].btnState) {
+                            buttons[count].btnState=false;
+                        }
+                        else {
+                            buttons[count].btnState=true;
+                        }
+                    }
                 }
             }
             return View("MineSweep", buttons);

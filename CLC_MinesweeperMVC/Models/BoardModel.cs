@@ -5,12 +5,14 @@ using System.Web;
 
 namespace CLC_MinesweeperMVC.Models {
     public class BoardModel {
+        
         public int difficulty;
         public int size;
         public int mine;
         public int[] rwRound = { -1, -1, -1, 0, 1, 1, 1, 0 };
         public int[] clRound = { -1, 0, 1, -1, 1, 0, -1, 1 };
         public bool inPlay;
+        public bool btnState;
         public CellModel[,] grid = null;
 
         //Set/Get Values for Board params
@@ -34,7 +36,7 @@ namespace CLC_MinesweeperMVC.Models {
         }
 
         //Empty Constructor
-        public BoardModel() : this(10, 1) { //Set Default Size to 10x10
+        public BoardModel(bool state) : this(10, 1) { //Set Default Size to 10x10
 
         }
 
@@ -234,7 +236,7 @@ namespace CLC_MinesweeperMVC.Models {
                 for(int cl = 0; cl<Difficulty*10; cl++) {
                     //if((sender as Button).Equals(btnGrid[rw, cl])) {
                         if(e.Button==EO.Base.UI.MouseButtons.Right) {
-                            if(grid[rw, cl].live==null) {
+                            if(grid[rw, cl].live) {
                                 //btnGrid[rw, cl].Image=flg;
                                 grid[rw, cl].visited=true;
                             }
