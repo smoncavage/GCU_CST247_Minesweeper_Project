@@ -42,7 +42,7 @@ namespace CLC_MinesweeperMVC.Models {
         public BoardModel(int isize = 10, int idifficulty = 1) {
             size=isize;
             difficulty=idifficulty;
-            SetupLiveNeighbors();
+            SetupBombs();
         }
         public CellModel[,] InitializeGrid() {
             this.grid=new CellModel[this.Size, this.Size];
@@ -54,7 +54,7 @@ namespace CLC_MinesweeperMVC.Models {
             return this.grid;
         }
         //Set bomb cells
-        public CellModel[,] SetupLiveNeighbors() {
+        public CellModel[,] SetupBombs() {
             Random rand = new Random(10);
             int totalsize;
             grid=InitializeGrid(); //*This is Necessary* otherwise will recieve Null Object Exception
@@ -185,6 +185,114 @@ namespace CLC_MinesweeperMVC.Models {
             if(x>-1&&x<Size&&y>-1&&y<Size)
                 return true;
             return false;
+        }
+
+        public void populateGrid() {
+           InitializeGrid();
+           SetupBombs();
+           CalculateLiveNeighbors();
+        }
+
+        public void updateButtonLabels() {
+            int count = 0;
+            int mines = 0;
+            for(int cl = 0; cl<Difficulty*10; cl++) {
+                for(int rw = 0; rw<Difficulty*10; rw++) {
+                    if(grid[rw, cl].visited==true) {
+                        count++;
+                        if(grid[rw, cl].liveNeighbors!=0) {//&&btnGrid[rw, cl].Image!=flg) {
+                            grid[rw, cl].liveNeighbors.ToString();
+                        }
+                    }
+                    if(grid[rw, cl].live) {
+                        mines++;
+                    }
+                }
+            }
+            if(count==((Difficulty*10)*(Difficulty*10))) {
+                inPlay=true;
+                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
+            }
+            if(count==(((Difficulty*10)*(Difficulty*10))-mines)) {
+                for(int cl = 0; cl<Difficulty*10; cl++) {
+                    for(int rw = 0; rw<Difficulty*10; rw++) {
+                        if(grid[rw, cl].live) {
+                            grid[rw, cl].visited=true;
+                            //btnGrid[rw, cl].Image=flg;
+                            inPlay=true;
+                        }
+                    }
+                }
+            }
+            if(inPlay) {
+                ShowAll();
+                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
+            }
+        }
+        public void Grid_Button_Click(object sender, EO.Base.UI.MouseEventArgs e) {
+            for(int rw = 0; rw<Difficulty*10; rw++) {
+                for(int cl = 0; cl<Difficulty*10; cl++) {
+                    //if((sender as Button).Equals(btnGrid[rw, cl])) {
+                        if(e.Button==EO.Base.UI.MouseButtons.Right) {
+                            if(grid[rw, cl].live==null) {
+                                //btnGrid[rw, cl].Image=flg;
+                                grid[rw, cl].visited=true;
+                            }
+                            else {
+                                //btnGrid[rw, cl].Image.Dispose();
+                                grid[rw, cl].visited=false;
+                            }
+                        }
+                        else {
+                            if(grid[rw, cl].live) {
+                                //btnGrid[rw, cl].Image=bmb;
+                                ShowAll();
+                                //MessageBox.Show("You hit a Mine! Length of play was: "+watch.Elapsed);
+                                // Form1 form1 = new Form1();
+                                //form1.Show();
+                            }
+                            else {
+                                if(grid[rw, cl].liveNeighbors==0&&!grid[rw, cl].live) {
+                                    //myBoard.FloodFill(rw, cl,1);
+                                    //FloodShow(rw, cl);
+                                    CheckSurround(rw, cl);
+                                }
+                                grid[rw, cl].visited=true;
+
+                            }
+                        }
+                   // }
+                }
+            }
+            if(inPlay) {
+                ShowAll();
+                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
+            }
+            updateButtonLabels();
+
+            //Set Background of clicked button to a different color
+            //(sender as Button).BackColor=Color.AliceBlue;
+
+        }
+        private void ShowAll() {
+            for(int cl = 0; cl<Difficulty*10; cl++) {
+                for(int rw = 0; rw<Difficulty*10; rw++) {
+                    if(grid[rw, cl].live) {//&&btnGrid[rw, cl].Image!=flg) {
+                        //btnGrid[rw, cl].Image=bmb;
+                    }
+                    if(grid[rw, cl].liveNeighbors>0) {
+                        grid[rw, cl].liveNeighbors.ToString();
+                    }
+                }
+            }
+        }
+
+        private List<CellModel> ConvertGridtoList() {
+            List<CellModel> brdList = new List<CellModel>();
+            foreach(CellModel brd in grid) {
+                brdList.Add(brd);
+            }
+            return brdList;
         }
     }
 }

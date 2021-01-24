@@ -14,7 +14,7 @@ namespace CLC_MinesweeperMVC.Models {
         System.Drawing.Image bmb = System.Drawing.Image.FromFile(@"C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\Images\checkered_flag.bmp");
         public static Stopwatch watch = new Stopwatch();
         static BoardModel myBoard;
-        static bool isWon;
+        public  bool isWon;
         public static int Difficulty = 1;
         public Button[,] btnGrid = new Button[Difficulty*10, Difficulty*10];
         public GameModel(int diff) {
@@ -34,7 +34,7 @@ namespace CLC_MinesweeperMVC.Models {
             btnGrid=butnGrid;
             myBoard=new BoardModel(Difficulty*10, Difficulty);
             myBoard.InitializeGrid();
-            myBoard.SetupLiveNeighbors();
+            myBoard.SetupBombs();
             myBoard.CalculateLiveNeighbors();
             for(int rw = 0; rw<Difficulty*10; rw++) {
                 for(int cl = 0; cl<Difficulty*10; cl++) {
@@ -157,6 +157,14 @@ namespace CLC_MinesweeperMVC.Models {
                     }
                 }
             }
+        }
+
+        private List<CellModel> ConvertGridtoList(){
+            List<CellModel> brdList = new List<CellModel>();
+            foreach(CellModel brd in myBoard.grid){
+                brdList.Add(brd);
+            }
+            return brdList;
         }
     }
 }
