@@ -289,7 +289,7 @@ namespace CLC_MinesweeperMVC.Models {
             }
         }
 
-        private List<CellModel> ConvertGridtoList() {
+        public List<CellModel> ConvertGridtoList() {
             List<CellModel> brdList = new List<CellModel>();
             foreach(CellModel brd in grid) {
                 brdList.Add(brd);

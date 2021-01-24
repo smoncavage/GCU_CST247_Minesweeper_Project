@@ -1,5 +1,4 @@
-﻿
-@model List<CLC_MinesweeperMVC.Models.BoardModel>
+﻿@model List<CLC_MinesweeperMVC.Models.CellModel>
 
 @{
     Layout = null;
@@ -14,7 +13,7 @@
 </head>
 <body>
     <div style="text-align:center">
-        @using(Html.BeginForm("Index", "Game", FormMethod.Post)) {
+        @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post)) {
             <table align="center" id="Table" cellspacing="0">
                 @{
                     var difficulty = ViewBag.Message*10;
@@ -26,13 +25,14 @@
                    @for(int rw = 0; rw<brdSize; rw++) {
                         count++;
                         <td>
-                            <button style="width:50px; height:50px" id="mine" type="submit" name="mine" value=(count+1)>
-                                @if(Model[count].btnState) {
-                                    <img src="~/Images/ButtonImg.bmp" />
+                            <button style="width:50px; height:50px" id="place" type="submit" name="place" value="@count">
+                                @if(Model[count].visited&&Model[count].live) {
+                                    <img src="~/Images/bomb.bmp" />
                                 }
-                                else {
-                                    <img src="~/Images/ButtonImgPurple.bmp" />
+                                else if(Model[count].visited&&!Model[count].live) {
+                                    <value>@Model[count].liveNeighbors</value>
                                 }
+                                <!--<img src="~/Images/checkered_flag.bmp" />-->
                             </button>
                         </td>
                     }

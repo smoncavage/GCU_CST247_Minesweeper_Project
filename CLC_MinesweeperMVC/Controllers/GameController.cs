@@ -8,21 +8,22 @@ using CLC_MinesweeperMVC.Models;
 namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
 
-        BoardModel myBoard;
+        BoardModel myBoard = new BoardModel();
         public static int Difficulty = 1;
-        private static List<BoardModel> buttons = new List<BoardModel>();
+        private static List<CellModel> buttons = new List<CellModel>();
         public  bool isWon;
-        public ButtonModel[,] btnGrid = new ButtonModel[Difficulty*10, Difficulty*10];
+        public CellModel[,] btnGrid = new CellModel[Difficulty*10, Difficulty*10];
 
         // GET: Button
         public ActionResult Index() {
             ViewBag.message=Difficulty;
-            for(int cl = 0; cl<Difficulty*10; cl++) {
+            /*for(int cl = 0; cl<Difficulty*10; cl++) {
                 for(int rw = 0; rw<Difficulty*10; rw++) {
-                    buttons.Add(new BoardModel(true));
+                    buttons.Add(new CellModel());
                 }
-            }
-            //myBoard.populateGrid();
+            }*/
+            myBoard.SetupBombs();
+            buttons = myBoard.ConvertGridtoList();
             return View("MineSweep", buttons);
         }
         // GET: Game
@@ -31,22 +32,35 @@ namespace CLC_MinesweeperMVC.Controllers{
         }
 
         [HttpPost]
-        public ActionResult OnButtonClick(string mine) {
+        public ActionResult OnButtonClick(int place) {
             ViewBag.message=Difficulty;
-            int count = -1;
+            //int count = -1;
+            buttons[place].visited=true;
+            int count = 0;
             for(int cl=0; cl<Difficulty*10; cl++) {
                 for(int rw = 0; rw<Difficulty*10; rw++) {
-                    count++;
-                    if(mine==(1+count).ToString()) {
-                        if(buttons[count].btnState) {
-                            buttons[count].btnState=false;
-                        }
-                        else {
-                            buttons[count].btnState=true;
-                        }
+                    if(buttons[place].col==cl&&buttons[place].row==rw) {
+                        myBoard.grid[rw, cl].visited=true;
+                        myBoard.CheckSurround(rw, cl);
                     }
                 }
             }
+            for(int cl = 0; cl<Difficulty*10; cl++) {
+                for(int rw = 0; rw<Difficulty*10; rw++) {
+                    if(myBoard.grid[rw, cl].visited&&buttons[count].col==cl-1&&buttons[count].row==rw-1) {
+                        buttons[count].visited=true;
+                        count++;
+                    }
+                }
+            }
+            /*List<CellModel> updateList = new List<CellModel>();
+            updateList=myBoard.ConvertGridtoList();
+            for(int cels = 0; cels<updateList.Count; cels++) {
+                if(updateList[cels].visited) {
+                    buttons[cels].visited=true;
+                }
+           
+            }*/
             return View("MineSweep", buttons);
         }
 
