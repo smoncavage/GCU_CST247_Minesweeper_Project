@@ -12,35 +12,35 @@
     <title>MineSweep</title>
 </head>
 <body>
-    <div style="text-align:center">
-        @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post)) {
-            <table align="center" id="Table" cellspacing="0">
-                @{
-                    var difficulty = ViewBag.Message*10;
-                    var brdSize = difficulty;
-                    int count = -1;
-                }
-                @for(int cl = 0; cl<brdSize; cl++) {
-                    <tr>
-                   @for(int rw = 0; rw<brdSize; rw++) {
-                        count++;
-                        <td>
-                            <button style="width:50px; height:50px" id="place" type="submit" name="place" value="@count">
-                                @if(Model[count].visited&&Model[count].live) {
-                                    <img src="~/Images/bomb.bmp" />
-                                }
-                                else if(Model[count].visited&&!Model[count].live) {
-                                    <value>@Model[count].liveNeighbors</value>
-                                }
-                                <!--<img src="~/Images/checkered_flag.bmp" />-->
-                            </button>
-                        </td>
+        <div style="text-align:center">
+            @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post)) {
+                <table align="center" id="Table" cellspacing="0">
+                    @{
+                        var difficulty = ViewBag.Message*10;
+                        var brdSize = difficulty;
+                        int count = -1;
                     }
-                    </tr>
-                }
+                    @for(int cl = 0; cl<brdSize; cl++) {
+                        <tr>
+                            @for(int rw = 0; rw<brdSize; rw++) {
+                                count++;
+                                <td>
+                                    <button style="width:50px; height:50px" id="place" type="submit" name="place" value="@count">
+                                        @if(Model[count].visited&&Model[count].live) {
+                                            <img src="~/Images/bomb.bmp" />
+                                        }
+                                        else if(Model[count].visited&&!Model[count].live) {
+                                            <value>@Model[count].liveNeighbors</value>
+                                        }
+                                        <!--<img src="~/Images/checkered_flag.bmp" />-->
+                                    </button>
+                                </td>
+                            }
+                        </tr>
+                    }
 
-            </table>
-         }
-    </div>
+                </table>
+            }
+        </div>
 </body>
 </html>
