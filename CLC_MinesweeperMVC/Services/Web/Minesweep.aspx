@@ -7,19 +7,16 @@
     <title>Minesweeper</title>
 </head>
 <body>
-    <form id="form2" runat="server">
+    <form id="form2" runat="server" style="text-align:center">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true">
+
+        </asp:ScriptManager>
         <div style="text-align:center">
-            <asp:Panel runat="server">
-                <table>
-                    <tr>
-                        <td>
-                            <asp:Button id="boardGrid" runat="server" Font-Names="Stencil" onclick="Grid_Button_Click" width="100px" />
-                                <!--<img src="~/Images/checkered_flag.bmp" />-->
-                            
-                        </td>
-                    </tr>
-                </table>
-            </asp:Panel>
+            <asp:UpdatePanel id="ButtonPanel" runat="server" BorderStyle="solid"  style="text-align:center" Width="300px" Height="300px" UpdateMode="Always">
+                <ContentTemplate>
+                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"> </asp:PlaceHolder>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </form>   
 </body>

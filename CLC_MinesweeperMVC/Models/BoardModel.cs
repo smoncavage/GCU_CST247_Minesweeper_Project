@@ -231,11 +231,11 @@ namespace CLC_MinesweeperMVC.Models {
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
         }
-        public void Grid_Button_Click(object sender, EO.Base.UI.MouseEventArgs e) {
+        public void Grid_Button_Click() {
             for(int rw = 0; rw<Difficulty*10; rw++) {
                 for(int cl = 0; cl<Difficulty*10; cl++) {
                     //if((sender as Button).Equals(btnGrid[rw, cl])) {
-                        if(e.Button==EO.Base.UI.MouseButtons.Right) {
+                        if(grid[rw,cl].Visited) {
                             if(grid[rw, cl].live) {
                                 //btnGrid[rw, cl].Image=flg;
                                 grid[rw, cl].visited=true;

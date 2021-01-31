@@ -1,5 +1,5 @@
 ﻿using CLC_MinesweeperMVC.Models;
-using EO.Base.UI;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,13 +10,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Services.Web {
-    public partial class WebForm2:System.Web.UI.Page {
+    public partial class WebForm2:System.Web.UI.Page{
         public static Stopwatch watch = new Stopwatch();
         static BoardModel myBoard;
         static bool isWon;
         public static int Difficulty = 1;
         public Button[,] btnGrid = new Button[Difficulty*10, Difficulty*10];
-        Panel panel1 = new Panel();
+        public List<CellModel> buttons = new List<CellModel>();
+        public int brdSize;
+        
 
         protected void Page_Load(object sender, EventArgs e) {
             isWon=false;
@@ -30,27 +32,29 @@ namespace CLC_MinesweeperMVC.Services.Web {
 
         public void PopulateGrid() {
             //Fill the Panel with Buttons And Create Game Board to Match
-            int buttonSize = 32;
-            panel1.Width=buttonSize*(Difficulty*10);
-            panel1.Height=panel1.Width;
+            int buttonSize = 50;
+            //ButtonPanel.Width=buttonSize*(Difficulty*10);
+            //ButtonPanel.Height=ButtonPanel.Width;
             Button[,] butnGrid = new Button[Difficulty*10, Difficulty*10];
             btnGrid=butnGrid;
             myBoard=new BoardModel(Difficulty*10, Difficulty);
             myBoard.InitializeGrid();
             myBoard.SetupBombs();
             myBoard.CalculateLiveNeighbors();
+            int count = 0;
             for(int rw = 0; rw<Difficulty*10; rw++) {
                 for(int cl = 0; cl<Difficulty*10; cl++) {
-                    btnGrid[rw, cl]=new Button();
+                    btnGrid[rw, cl]=new Button {
 
-                    //make them square
-                    btnGrid[rw, cl].Width=buttonSize;
-                    btnGrid[rw, cl].Height=buttonSize;
-
-                    //btnGrid[rw, cl].MouseUp+=Grid_Button_Click; //Same click event for each button
-                    panel1.Controls.Add(btnGrid[rw, cl]);
+                        //make them square
+                        Width=buttonSize,
+                        Height=buttonSize,
+                    };
+                    btnGrid[rw, cl].ID=(count++).ToString();
+                    btnGrid[rw, cl].Click+=Grid_Button_Click; //Same click event for each button
+                    ButtonPanel.ContentTemplateContainer.Controls.Add(btnGrid[rw, cl]);
+                    PlaceHolder1.Controls.Add(btnGrid[rw, cl]);
                     //btnGrid[rw, cl].Location=new Point(buttonSize*rw, buttonSize*cl);
-
                 }
             }
         }
@@ -65,7 +69,7 @@ namespace CLC_MinesweeperMVC.Services.Web {
                         if(myBoard.grid[rw, cl].liveNeighbors!=0) {//&&btnGrid[rw, cl].Image!=flg) {
                             btnGrid[rw, cl].Text=myBoard.grid[rw, cl].liveNeighbors.ToString();
                         }
-                        btnGrid[rw, cl].BackColor=Color.AliceBlue;
+                        btnGrid[rw, cl].BackColor=Color.Red;
                         btnGrid[rw, cl].Enabled=false;
                     }
                     if(myBoard.grid[rw, cl].live) {
@@ -99,6 +103,7 @@ namespace CLC_MinesweeperMVC.Services.Web {
         }
 
         public void Grid_Button_Click(object sender, EventArgs e) {
+           
             for(int rw = 0; rw<Difficulty*10; rw++) {
                 for(int cl = 0; cl<Difficulty*10; cl++) {
                     if((sender as Button).Equals(btnGrid[rw, cl])) {
@@ -144,9 +149,9 @@ namespace CLC_MinesweeperMVC.Services.Web {
                 //form1.Show();
             }
             UpdateButtonLabels();
-
+            //ButtonPanel.Update();
             //Set Background of clicked button to a different color
-            (sender as Button).BackColor=Color.AliceBlue;
+            (sender as Button).BackColor=Color.DarkGray;
 
         }
         private void ShowAll() {
