@@ -351,20 +351,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Business\SecurityService.cs" />
     <Compile Include="Services\Data\SecurityDAO.cs" />
-    <Compile Include="Services\Web\Difficulty.aspx.cs">
-      <DependentUpon>Difficulty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Services\Web\Difficulty.aspx.designer.cs">
-      <DependentUpon>Difficulty.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Services\Web\Minesweep.aspx.cs">
-      <DependentUpon>Minesweep.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Services\Web\Minesweep.aspx.designer.cs">
-      <DependentUpon>Minesweep.aspx</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>User1Model.tt</DependentUpon>
     </Compile>
@@ -503,8 +489,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Services\Web\Difficulty.aspx" />
-    <Content Include="Services\Web\Minesweep.aspx" />
     <Content Include="User1Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>User1Model.edmx</DependentUpon>
@@ -541,7 +525,7 @@
     </Content>
     <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\Game\MineSweep.cshtml" />
-    <Content Include="Views\Game\Difficulty.cshtml" />
+    <Content Include="Views\Game\_Difficulty.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -552,6 +536,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Game\_BoardPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

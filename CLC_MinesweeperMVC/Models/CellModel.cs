@@ -43,5 +43,6 @@ namespace CLC_MinesweeperMVC.Models {
             get => live;
             set => live=true;
         }
+        public object Image { get; internal set; }
     }
 }

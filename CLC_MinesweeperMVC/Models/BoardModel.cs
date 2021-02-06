@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Models {
     public class BoardModel {
@@ -231,23 +233,25 @@ namespace CLC_MinesweeperMVC.Models {
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
         }
-        public void Grid_Button_Click() {
+        public void Grid_Button_Click(object sender, EventArgs e) {
+
             for(int rw = 0; rw<Difficulty*10; rw++) {
                 for(int cl = 0; cl<Difficulty*10; cl++) {
-                    //if((sender as Button).Equals(btnGrid[rw, cl])) {
-                        if(grid[rw,cl].Visited) {
-                            if(grid[rw, cl].live) {
-                                //btnGrid[rw, cl].Image=flg;
+                    if((sender as Button).Equals(grid[rw, cl])) {
+                        if(e.ToString()!=null) {
+                            if(grid[rw, cl].Image==null) { //Should be grid[rw,cl].Image==null
+                                ///grid[rw, cl].Image=flg;
+                                //grid[rw, cl].Enabled=true;
                                 grid[rw, cl].visited=true;
                             }
                             else {
-                                //btnGrid[rw, cl].Image.Dispose();
+                                //grid[rw, cl].Image.Dispose();
                                 grid[rw, cl].visited=false;
                             }
                         }
                         else {
                             if(grid[rw, cl].live) {
-                                //btnGrid[rw, cl].Image=bmb;
+                                //watch.Stop();
                                 ShowAll();
                                 //MessageBox.Show("You hit a Mine! Length of play was: "+watch.Elapsed);
                                 // Form1 form1 = new Form1();
@@ -260,26 +264,32 @@ namespace CLC_MinesweeperMVC.Models {
                                     CheckSurround(rw, cl);
                                 }
                                 grid[rw, cl].visited=true;
-
+                                (sender as Button).Text=grid[rw, cl].liveNeighbors.ToString();
                             }
                         }
-                   // }
+                    }
                 }
             }
-            if(inPlay) {
+            if(!inPlay) {
+                //watch.Stop();
                 ShowAll();
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
+                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
+                // Form1 form1 = new Form1();
+                //form1.Show();
             }
             updateButtonLabels();
-
+            //ButtonPanel.Update();
             //Set Background of clicked button to a different color
-            //(sender as Button).BackColor=Color.AliceBlue;
+            (sender as Button).BackColor=Color.Red;
 
         }
-        private void ShowAll() {
+
+        
+        public void ShowAll() {
             for(int cl = 0; cl<Difficulty*10; cl++) {
                 for(int rw = 0; rw<Difficulty*10; rw++) {
-                    if(grid[rw, cl].live) {//&&btnGrid[rw, cl].Image!=flg) {
+                    if(grid[rw, cl].live) {//&&grid[rw, cl].Image!=flg) {
                         //btnGrid[rw, cl].Image=bmb;
                     }
                     if(grid[rw, cl].liveNeighbors>0) {
