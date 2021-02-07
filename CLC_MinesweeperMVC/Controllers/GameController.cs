@@ -28,53 +28,7 @@ namespace CLC_MinesweeperMVC.Controllers{
         public ActionResult Game() {
             return PartialView("_BoardPage");
         }
-        [HttpPost]
-        public ActionResult Grid_Button_Click() {
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
-                    //if((sender as Button).Equals(grid[rw, cl])) {
-                    if(myBoard.grid[rw, cl].Visited) {
-                        if(myBoard.grid[rw, cl].live) {
-                            //grid[rw, cl].Image=flg;
-                            myBoard.grid[rw, cl].visited=true;
-                        }
-                        else {
-                            //grid[rw, cl].Image.Dispose();
-                            myBoard.grid[rw, cl].visited=false;
-                        }
-                    }
-                    else {
-                        if(myBoard.grid[rw, cl].live) {
-                            //grid[rw, cl].Image=bmb;
-                            myBoard.ShowAll();
-                            //MessageBox.Show("You hit a Mine! Length of play was: "+watch.Elapsed);
-                            // Form1 form1 = new Form1();
-                            //form1.Show();
-                        }
-                        else {
-                            if(myBoard.grid[rw, cl].liveNeighbors==0&&!myBoard.grid[rw, cl].live) {
-                                //myBoard.FloodFill(rw, cl,1);
-                                //FloodShow(rw, cl);
-                                myBoard.CheckSurround(rw, cl);
-                            }
-                            myBoard.grid[rw, cl].visited=true;
-
-                        }
-                    }
-                    // }
-                }
-            }
-            if(myBoard.inPlay) {
-                myBoard.ShowAll();
-                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
-            }
-            myBoard.updateButtonLabels();
-
-            //Set Background of clicked button to a different color
-            //(sender as Button).BackColor=Color.AliceBlue;
-            return PartialView("_BoardPage", myBoard);
-        }
-
+        
         [HttpPost]
         public ActionResult OnButtonClick(string BoardButtons) {
             //var buttonValue = ButtonName.;
@@ -83,30 +37,17 @@ namespace CLC_MinesweeperMVC.Controllers{
             
             for(int rw = 0; rw<Difficulty*10; rw++) {
                 for(int cl = 0; cl<Difficulty*10; cl++) {
-                   if(myBoard.grid[rw,cl].countValue==cnt){
-                        myBoard.grid[rw, cl].visited=true;
-                    }
                     //if((sender as Button).Equals(grid[rw, cl])) {
-                    if(myBoard.grid[rw, cl].Visited) {
-                        if(myBoard.grid[rw, cl].live) {
-                            myBoard.grid[rw, cl].Image=flg;
-                            myBoard.grid[rw, cl].visited=true;
-                        }
-                        else {
-                            //grid[rw, cl].Image.Dispose();
-                            myBoard.grid[rw, cl].visited=false;
-                        }
-                    }
-                    else {
+                    if(myBoard.grid[rw, cl].countValue==buttons[cnt].countValue) {
+
                         if(myBoard.grid[rw, cl].live) {
                             myBoard.grid[rw, cl].Image=bmb;
-                            myBoard.ShowAll();
+                            isWon=true;
                             //MessageBox.Show("You hit a Mine! Length of play was: "+watch.Elapsed);
-                            // Form1 form1 = new Form1();
-                            //form1.Show();
                         }
                         else {
                             if(myBoard.grid[rw, cl].liveNeighbors==0&&!myBoard.grid[rw, cl].live) {
+                                isWon=false;
                                 //myBoard.FloodFill(rw, cl,1);
                                 //FloodShow(rw, cl);
                                 myBoard.CheckSurround(rw, cl);
@@ -118,7 +59,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                     
                 }
             }
-            if(myBoard.inPlay) {
+            if(isWon) {
                 myBoard.ShowAll();
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }

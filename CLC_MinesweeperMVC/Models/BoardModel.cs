@@ -194,17 +194,11 @@ namespace CLC_MinesweeperMVC.Models {
             return false;
         }
 
-        public void populateGrid() {
-           InitializeGrid();
-           SetupBombs();
-           CalculateLiveNeighbors();
-        }
-
         public void updateButtonLabels() {
             int count = 0;
             int mines = 0;
-            for(int cl = 0; cl<Difficulty*10; cl++) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
+            for(int rw = 0; rw<Difficulty*10; rw++) {
+                for(int cl = 0; cl<Difficulty*10; cl++) {
                     if(grid[rw, cl].visited==true) {
                         count++;
                         if(grid[rw, cl].liveNeighbors!=0) {//&&btnGrid[rw, cl].Image!=flg) {
@@ -217,21 +211,24 @@ namespace CLC_MinesweeperMVC.Models {
                 }
             }
             if(count==((Difficulty*10)*(Difficulty*10))) {
-                inPlay=true;
+                inPlay=false;
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
-            if(count==(((Difficulty*10)*(Difficulty*10))-mines)) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
-                    for(int rw = 0; rw<Difficulty*10; rw++) {
+            else if(count==(((Difficulty*10)*(Difficulty*10))-mines)) {
+                for(int rw = 0; rw<Difficulty*10; rw++) {
+                    for(int cl = 0; cl<Difficulty*10; cl++) {
                         if(grid[rw, cl].live) {
                             grid[rw, cl].visited=true;
                             //btnGrid[rw, cl].Image=flg;
-                            inPlay=true;
+                            inPlay=false;
                         }
                     }
                 }
             }
-            if(inPlay) {
+            else {
+                inPlay=true;
+            }
+            if(!inPlay) {
                 ShowAll();
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
@@ -290,8 +287,8 @@ namespace CLC_MinesweeperMVC.Models {
 
         
         public void ShowAll() {
-            for(int cl = 0; cl<Difficulty*10; cl++) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
+            for(int rw = 0; rw<Difficulty*10; rw++) {
+                for(int cl = 0; cl<Difficulty*10; cl++) {
                     if(grid[rw, cl].live) {//&&grid[rw, cl].Image!=flg) {
                         //btnGrid[rw, cl].Image=bmb;
                     }

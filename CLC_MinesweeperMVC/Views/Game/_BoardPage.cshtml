@@ -24,13 +24,15 @@
             <tr>
                 @for(int rw = 0; rw<brdSize; rw++) {
                     count++;
+                    var buttonId = count;
                 <td>
                     
-                    <button name="BoardButtons" style="width:50px; height:50px" id="@count" onclick="myFunction" type="submit" value="@count">
+                    <button name="BoardButtons" style="width:50px; height:50px" id="@buttonId+" onclick="myFunction" type="submit" value="@count">
                         
                         @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
-                            <img src="~/Images/bomb.bmp" />
                             
+                            <img src="~/Images/bomb.bmp" />
+
                         }
                         else if(Model.grid[rw, cl].visited&&!Model.grid[rw, cl].live) {
                             <value>@Model.grid[rw, cl].liveNeighbors</value>

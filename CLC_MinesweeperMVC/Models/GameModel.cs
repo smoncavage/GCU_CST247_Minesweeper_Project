@@ -55,8 +55,8 @@ namespace CLC_MinesweeperMVC.Models {
         public void updateButtonLabels() {
             int count = 0;
             int mines = 0;
-            for(int cl = 0; cl<Difficulty*10; cl++) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
+            for(int rw = 0; rw<Difficulty*10; rw++) {
+                for(int cl = 0; cl<Difficulty*10; cl++) {
                     if(myBoard.grid[rw, cl].visited==true) {
                         count++;
                         if(myBoard.grid[rw, cl].liveNeighbors!=0){//&&btnGrid[rw, cl].Image!=flg) {
