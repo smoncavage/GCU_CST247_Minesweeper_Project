@@ -30,6 +30,11 @@ namespace CLC_MinesweeperMVC {
                 url: "{MineSweep}",
                 defaults: new { controller = "Game", action = "", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Settings",
+                url: "{Settings}",
+                defaults: new { controller = "Settings", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

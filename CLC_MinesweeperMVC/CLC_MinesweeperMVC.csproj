@@ -337,6 +337,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
@@ -525,7 +526,7 @@
     </Content>
     <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\Game\MineSweep.cshtml" />
-    <Content Include="Views\Game\_Difficulty.cshtml" />
+    <Content Include="Views\Shared\_Difficulty.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -540,6 +541,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

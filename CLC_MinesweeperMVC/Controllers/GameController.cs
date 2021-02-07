@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
-        Bitmap flg = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
-        Bitmap bmb = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
+        Bitmap flg = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
+        Bitmap bmb = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
         BoardModel myBoard = new BoardModel();
         public static int Difficulty = 1;
         private static List<CellModel> buttons = new List<CellModel>();
@@ -18,8 +18,9 @@ namespace CLC_MinesweeperMVC.Controllers{
         public CellModel[,] btnGrid = new CellModel[Difficulty*10, Difficulty*10];
 
         // GET: Button
-        public ActionResult Index() {
-            ViewBag.message=Difficulty;
+        public ActionResult Index(string radioButton) {
+            Difficulty = Int32.Parse(radioButton);
+            ViewBag.Message = Difficulty;
             myBoard.SetupBombs();
             buttons = myBoard.ConvertGridtoList();
             return PartialView("_BoardPage",myBoard);
@@ -28,7 +29,8 @@ namespace CLC_MinesweeperMVC.Controllers{
         public ActionResult Game() {
             return PartialView("_BoardPage");
         }
-        
+           
+
         [HttpPost]
         public ActionResult OnButtonClick(string BoardButtons) {
             //var buttonValue = ButtonName.;
@@ -68,8 +70,12 @@ namespace CLC_MinesweeperMVC.Controllers{
             return PartialView("_BoardPage", myBoard);
         }
 
+        
         public ActionResult BoardPage() {
             return PartialView(myBoard);
         }
+        
+
+        
     }
 }

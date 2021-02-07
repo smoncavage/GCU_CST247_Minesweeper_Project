@@ -1,0 +1,27 @@
+﻿@model CLC_MinesweeperMVC.Models.BoardModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div>
+    <div>
+        <h2>@Html.Label("Please select a Difficulty level")</h2>
+    </div>
+
+    <div>
+        @using (Html.BeginForm("Index", "Game", FormMethod.Post, new { id = "settingsform" }))
+        {
+            @Html.Label("Easy")
+            @Html.RadioButton("radioButton", 1, new { @onchange = "settingsform.submit(this);" })
+            <br />
+            @Html.Label("Moderate")
+            @Html.RadioButton("radioButton", 2, new { @onchange = "settingsform.submit(this);" })
+            <br />
+            @Html.Label("Hard")
+            @Html.RadioButton("radioButton", 3, new { @onchange = "settingsform.submit(this);" })
+            <br />
+        }
+    </div>
+</div>
