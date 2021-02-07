@@ -1,35 +1,47 @@
-﻿@model CLC_MinesweeperMVC.Models.BoardModel
+﻿@using CLC_MinesweeperMVC.Controllers
+@model CLC_MinesweeperMVC.Models.BoardModel
     @{
-        ViewBag.Title="Grid_Button_Click";
+        ViewBag.Title="BoardPage";
+    }
+<script>
+    function myFunction() {
+
+        document.getElementById('#"+buttonId+"').style.color = "red";
+
     }
 
+</script>
 <div style="text-align:center">
-    @using(Html.BeginForm("", "Game", FormMethod.Post)) {
-        <table align="center" id="Table" cellspacing="0">
-            @{
-                var difficulty = ViewBag.Message*10;
-                var brdSize = difficulty;
-                int count = -1;
-            }
-            @for(int cl = 0; cl<brdSize; cl++) {
-                <tr>
-                    @for(int rw = 0; rw<brdSize; rw++) {
-                        count++;
-                        <td>
-                            <button style="width:50px; height:50px" id="place" type="submit" name="place">
-                                @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
-                                    <img src="~/Images/bomb.bmp" />
-                                }
-                                else if(Model.grid[rw, cl].visited&&!Model.grid[rw, cl].live) {
-                                    <value>@Model.grid[rw, cl].liveNeighbors</value>
-                                }
-                                <!--<img src="~/Images/checkered_flag.bmp" />-->
-                            </button>
-                        </td>
-                    }
-                </tr>
-            }
+    @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post, new {id = "myForm" })) {
+    <table align="center" id="Table" cellspacing="0">
+        @{
+            var difficulty = ViewBag.Message*10;
+            var brdSize = difficulty;
+            int count = -1;
+        }
 
-        </table>
+            @for(int cl = 0; cl<brdSize; cl++) {
+            <tr>
+                @for(int rw = 0; rw<brdSize; rw++) {
+                    count++;
+                <td>
+                    
+                    <button name="BoardButtons" style="width:50px; height:50px" id="@count" onclick="myFunction" type="submit" value="@count">
+                        
+                        @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
+                            <img src="~/Images/bomb.bmp" />
+                            
+                        }
+                        else if(Model.grid[rw, cl].visited&&!Model.grid[rw, cl].live) {
+                            <value>@Model.grid[rw, cl].liveNeighbors</value>
+                        }
+                        <!--<img src="~/Images/checkered_flag.bmp" />-->
+                    </button>
+                </td>
+                }
+            </tr>
+        }
+        
+    </table>
      }
 </div>

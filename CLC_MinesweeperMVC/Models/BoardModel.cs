@@ -11,6 +11,7 @@ namespace CLC_MinesweeperMVC.Models {
         public int difficulty;
         public int size;
         public int mine;
+        
         public int[] rwRound = { -1, -1, -1, 0, 1, 1, 1, 0 };
         public int[] clRound = { -1, 0, 1, -1, 1, 0, -1, 1 };
         public bool inPlay;
@@ -49,10 +50,12 @@ namespace CLC_MinesweeperMVC.Models {
             SetupBombs();
         }
         public CellModel[,] InitializeGrid() {
+            int count=0;
             this.grid=new CellModel[this.Size, this.Size];
             for(int iOuter = 0; iOuter<this.Size; iOuter++) {
                 for(int jInner = 0; jInner<this.Size; jInner++) {
                     this.grid[iOuter, jInner]=new CellModel();
+                    this.grid[iOuter, jInner].countValue=count++;
                 }
             }
             return this.grid;

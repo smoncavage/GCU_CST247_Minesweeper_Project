@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Drawing;
 using CLC_MinesweeperMVC.Models;
+using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
-
+        Bitmap flg = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
+        Bitmap bmb = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
         BoardModel myBoard = new BoardModel();
         public static int Difficulty = 1;
         private static List<CellModel> buttons = new List<CellModel>();
@@ -17,18 +20,13 @@ namespace CLC_MinesweeperMVC.Controllers{
         // GET: Button
         public ActionResult Index() {
             ViewBag.message=Difficulty;
-            /*for(int cl = 0; cl<Difficulty*10; cl++) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
-                    buttons.Add(new CellModel());
-                }
-            }*/
             myBoard.SetupBombs();
             buttons = myBoard.ConvertGridtoList();
-            return View("MineSweep",myBoard);
+            return PartialView("_BoardPage",myBoard);
         }
         // GET: Game
         public ActionResult Game() {
-            return View("MineSweep");
+            return PartialView("_BoardPage");
         }
         [HttpPost]
         public ActionResult Grid_Button_Click() {
@@ -78,36 +76,55 @@ namespace CLC_MinesweeperMVC.Controllers{
         }
 
         [HttpPost]
-        public ActionResult OnButtonClick(int place) {
+        public ActionResult OnButtonClick(string BoardButtons) {
+            //var buttonValue = ButtonName.;
+            int cnt = int.Parse(BoardButtons);
             ViewBag.message=Difficulty;
-            //int count = -1;
-            buttons[place].visited=true;
-            int count = 0;
-            for(int cl=0; cl<Difficulty*10; cl++) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
-                    if(buttons[place].col==cl&&buttons[place].row==rw) {
+            
+            for(int rw = 0; rw<Difficulty*10; rw++) {
+                for(int cl = 0; cl<Difficulty*10; cl++) {
+                   if(myBoard.grid[rw,cl].countValue==cnt){
                         myBoard.grid[rw, cl].visited=true;
-                        myBoard.CheckSurround(rw, cl);
                     }
+                    //if((sender as Button).Equals(grid[rw, cl])) {
+                    if(myBoard.grid[rw, cl].Visited) {
+                        if(myBoard.grid[rw, cl].live) {
+                            myBoard.grid[rw, cl].Image=flg;
+                            myBoard.grid[rw, cl].visited=true;
+                        }
+                        else {
+                            //grid[rw, cl].Image.Dispose();
+                            myBoard.grid[rw, cl].visited=false;
+                        }
+                    }
+                    else {
+                        if(myBoard.grid[rw, cl].live) {
+                            myBoard.grid[rw, cl].Image=bmb;
+                            myBoard.ShowAll();
+                            //MessageBox.Show("You hit a Mine! Length of play was: "+watch.Elapsed);
+                            // Form1 form1 = new Form1();
+                            //form1.Show();
+                        }
+                        else {
+                            if(myBoard.grid[rw, cl].liveNeighbors==0&&!myBoard.grid[rw, cl].live) {
+                                //myBoard.FloodFill(rw, cl,1);
+                                //FloodShow(rw, cl);
+                                myBoard.CheckSurround(rw, cl);
+                            }
+                            myBoard.grid[rw, cl].visited=true;
+
+                        }
+                    }
+                    
                 }
             }
-            for(int cl = 0; cl<Difficulty*10; cl++) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
-                    if(myBoard.grid[rw, cl].visited&&buttons[count].col==cl-1&&buttons[count].row==rw-1) {
-                        buttons[count].visited=true;
-                        count++;
-                    }
-                }
+            if(myBoard.inPlay) {
+                myBoard.ShowAll();
+                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
-            /*List<CellModel> updateList = new List<CellModel>();
-            updateList=myBoard.ConvertGridtoList();
-            for(int cels = 0; cels<updateList.Count; cels++) {
-                if(updateList[cels].visited) {
-                    buttons[cels].visited=true;
-                }
-           
-            }*/
-            return View(myBoard);
+            myBoard.updateButtonLabels();
+            //(sender as Button).BackColor=Color.AliceBlue;
+            return PartialView("_BoardPage", myBoard);
         }
 
         public ActionResult BoardPage() {
