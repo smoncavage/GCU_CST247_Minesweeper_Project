@@ -16,7 +16,7 @@ namespace CLC_MinesweeperMVC.Models {
         static BoardModel myBoard;
         public  bool isWon;
         public static int Difficulty = 1;
-        public Button[,] btnGrid = new Button[Difficulty*10, Difficulty*10];
+        public Button[,] btnGrid = new Button[myBoard.size, myBoard.size];
         public GameModel(int diff) {
             //InitializeComponent();
             isWon=false;
@@ -28,16 +28,16 @@ namespace CLC_MinesweeperMVC.Models {
         public void populateGrid() {
             //Fill the Panel with Buttons And Create Game Board to Match
             int buttonSize = 32;
-           // panel1.Width=buttonSize*(Difficulty*10);
+           // panel1.Width=buttonSize*(size);
            // panel1.Height=panel1.Width;
-            Button[,] butnGrid = new Button[Difficulty*10, Difficulty*10];
+            Button[,] butnGrid = new Button[myBoard.size, myBoard.size];
             btnGrid=butnGrid;
-            myBoard=new BoardModel(Difficulty*10, Difficulty);
+            myBoard=new BoardModel(myBoard.size, Difficulty);
             myBoard.InitializeGrid();
             myBoard.SetupBombs();
             myBoard.CalculateLiveNeighbors();
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
+            for(int rw = 0; rw<myBoard.size; rw++) {
+                for(int cl = 0; cl<myBoard.size; cl++) {
                     btnGrid[rw, cl]=new Button();
 
                     //make them square
@@ -55,8 +55,8 @@ namespace CLC_MinesweeperMVC.Models {
         public void updateButtonLabels() {
             int count = 0;
             int mines = 0;
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
+            for(int rw = 0; rw<myBoard.size; rw++) {
+                for(int cl = 0; cl<myBoard.size; cl++) {
                     if(myBoard.grid[rw, cl].visited==true) {
                         count++;
                         if(myBoard.grid[rw, cl].liveNeighbors!=0){//&&btnGrid[rw, cl].Image!=flg) {
@@ -70,13 +70,13 @@ namespace CLC_MinesweeperMVC.Models {
                     }
                 }
             }
-            if(count==((Difficulty*10)*(Difficulty*10))) {
+            if(count==((myBoard.size)*(myBoard.size))) {
                 isWon=true;
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
-            if(count==(((Difficulty*10)*(Difficulty*10))-mines)) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
-                    for(int rw = 0; rw<Difficulty*10; rw++) {
+            if(count==(((myBoard.size)*(myBoard.size))-mines)) {
+                for(int cl = 0; cl<myBoard.size; cl++) {
+                    for(int rw = 0; rw<myBoard.size; rw++) {
                         if(myBoard.grid[rw, cl].live) {
                             myBoard.grid[rw, cl].visited=true;
                             //btnGrid[rw, cl].Image=flg;
@@ -96,8 +96,8 @@ namespace CLC_MinesweeperMVC.Models {
         }
 
         public void Grid_Button_Click(object sender, MouseEventArgs e) {
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
+            for(int rw = 0; rw<myBoard.size; rw++) {
+                for(int cl = 0; cl<myBoard.size; cl++) {
                     if((sender as Button).Equals(btnGrid[rw, cl])) {
                         if(e.Button==EO.Base.UI.MouseButtons.Right) {
                             if(btnGrid[rw, cl].ID!=null) {
@@ -147,8 +147,8 @@ namespace CLC_MinesweeperMVC.Models {
 
         }
         private void ShowAll() {
-            for(int cl = 0; cl<Difficulty*10; cl++) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
+            for(int cl = 0; cl<myBoard.size; cl++) {
+                for(int rw = 0; rw<myBoard.size; rw++) {
                     if(myBoard.grid[rw, cl].live){//&&btnGrid[rw, cl].Image!=flg) {
                         //btnGrid[rw, cl].Image=bmb;
                     }

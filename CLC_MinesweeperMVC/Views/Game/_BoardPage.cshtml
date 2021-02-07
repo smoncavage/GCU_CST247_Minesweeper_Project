@@ -2,11 +2,12 @@
 @model CLC_MinesweeperMVC.Models.BoardModel
     @{
         ViewBag.Title="BoardPage";
+        Layout="~/Views/Shared/_Layout.cshtml";
     }
 <script>
     function myFunction() {
 
-        document.getElementById('#"+buttonId+"').style.color = "red";
+        document.getElementById(BoardButtons).style.color = "red";
 
     }
 
@@ -15,27 +16,27 @@
     @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post, new {id = "myForm" })) {
     <table align="center" id="Table" cellspacing="0">
         @{
-            var difficulty = ViewBag.Message*10;
+            var difficulty = ViewBag.Message*7;
             var brdSize = difficulty;
             int count = -1;
         }
 
-            @for(int cl = 0; cl<brdSize; cl++) {
+            @for(int rw = 0; rw<Model.Size; rw++) {
             <tr>
-                @for(int rw = 0; rw<brdSize; rw++) {
+                @for(int cl = 0; cl<Model.Size; cl++) {
                     count++;
                     var buttonId = count;
                 <td>
                     
-                    <button name="BoardButtons" style="width:50px; height:50px" id="@buttonId+" onclick="myFunction" type="submit" value="@count">
+                    <button name="BoardButtons" style="width:50px; height:50px;background-color:beige" id="@buttonId+" onclick="myFunction" type="submit" value="@count">
                         
                         @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
                             
                             <img src="~/Images/bomb.bmp" />
 
                         }
-                        else if(Model.grid[rw, cl].visited&&!Model.grid[rw, cl].live) {
-                            <value>@Model.grid[rw, cl].liveNeighbors</value>
+                        else if(Model.grid[rw, cl].visited&&!Model.grid[rw,cl].live) {
+                            <value style="font-family:Stencil; background-color:chartreuse">@Model.grid[rw, cl].liveNeighbors</value>
                         }
                         <!--<img src="~/Images/checkered_flag.bmp" />-->
                     </button>

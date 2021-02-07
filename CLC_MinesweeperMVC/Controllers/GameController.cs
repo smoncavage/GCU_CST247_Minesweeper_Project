@@ -9,36 +9,39 @@ using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
-        Bitmap flg = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
-        Bitmap bmb = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
-        BoardModel myBoard = new BoardModel();
-        public static int Difficulty = 1;
+        Bitmap flg = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
+        Bitmap bmb = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
+        public static int Difficulty;
+        public static int brdSize;
         private static List<CellModel> buttons = new List<CellModel>();
         public  bool isWon;
-        public CellModel[,] btnGrid = new CellModel[Difficulty*10, Difficulty*10];
+        public CellModel[,] btnGrid = new CellModel[Difficulty*7, Difficulty*7];
+        BoardModel myBoard = new BoardModel(brdSize, Difficulty);
 
         // GET: Button
         public ActionResult Index(string radioButton) {
             Difficulty = Int32.Parse(radioButton);
-            ViewBag.Message = Difficulty;
-            myBoard.SetupBombs();
-            buttons = myBoard.ConvertGridtoList();
+            ViewBag.message = Difficulty;
+            brdSize = Difficulty*7;
+            myBoard.size=brdSize;
+            myBoard.difficulty=Difficulty;
+            buttons = myBoard.gridList;
+            ViewBag.ButtonList=buttons;
             return PartialView("_BoardPage",myBoard);
         }
+
         // GET: Game
         public ActionResult Game() {
             return PartialView("_BoardPage");
         }
-           
-
+        
         [HttpPost]
         public ActionResult OnButtonClick(string BoardButtons) {
             //var buttonValue = ButtonName.;
             int cnt = int.Parse(BoardButtons);
             ViewBag.message=Difficulty;
-            
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
+            for(int rw = 0; rw<brdSize; rw++) {
+                for(int cl = 0; cl<brdSize; cl++) {
                     //if((sender as Button).Equals(grid[rw, cl])) {
                     if(myBoard.grid[rw, cl].countValue==buttons[cnt].countValue) {
 
@@ -55,7 +58,6 @@ namespace CLC_MinesweeperMVC.Controllers{
                                 myBoard.CheckSurround(rw, cl);
                             }
                             myBoard.grid[rw, cl].visited=true;
-
                         }
                     }
                     

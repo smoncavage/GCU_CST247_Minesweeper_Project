@@ -11,12 +11,14 @@ namespace CLC_MinesweeperMVC.Models {
         public int difficulty;
         public int size;
         public int mine;
-        
+        public int totalsize;
+
         public int[] rwRound = { -1, -1, -1, 0, 1, 1, 1, 0 };
         public int[] clRound = { -1, 0, 1, -1, 1, 0, -1, 1 };
         public bool inPlay;
         public bool btnState;
         public CellModel[,] grid = null;
+        public List<CellModel> gridList = new List<CellModel>();
 
         //Set/Get Values for Board params
         public int Size {
@@ -43,10 +45,15 @@ namespace CLC_MinesweeperMVC.Models {
 
         }
 
+        public BoardModel() {
+
+        }
+
         //Constructor using Difficulty to set board params
-        public BoardModel(int isize = 10, int idifficulty = 1) {
-            size=isize;
+        public BoardModel(int isize, int idifficulty) {
+            this.Size=isize;
             difficulty=idifficulty;
+            totalsize=this.Size*this.Size;
             SetupBombs();
         }
         public CellModel[,] InitializeGrid() {
@@ -56,6 +63,7 @@ namespace CLC_MinesweeperMVC.Models {
                 for(int jInner = 0; jInner<this.Size; jInner++) {
                     this.grid[iOuter, jInner]=new CellModel();
                     this.grid[iOuter, jInner].countValue=count++;
+                    gridList.Add(this.grid[iOuter, jInner]);
                 }
             }
             return this.grid;
@@ -63,15 +71,14 @@ namespace CLC_MinesweeperMVC.Models {
         //Set bomb cells
         public CellModel[,] SetupBombs() {
             Random rand = new Random(10);
-            int totalsize;
+            
             grid=InitializeGrid(); //*This is Necessary* otherwise will recieve Null Object Exception
-            totalsize=this.Size*this.Size;
             mine=totalsize/(8-this.difficulty);
             for(int iRand = mine; iRand>0; iRand--) {
                 int randwth = rand.Next(this.Size+1);
                 int randlth = rand.Next(this.Size+1);
                 //Validate random #'s
-                if((randwth>=0)&&(randwth<Size)&&(randlth>=0)&&(randlth<Size)&&!grid[randlth, randwth].live) {
+                if((randwth>=0)&&(randwth<this.Size)&&(randlth>=0)&&(randlth<this.Size)&&!grid[randlth, randwth].live) {
                     grid[randlth, randwth].live=true;
                 }
                 else {
@@ -85,8 +92,8 @@ namespace CLC_MinesweeperMVC.Models {
 
         //set neighboring bomb cells to value
         public Array CalculateLiveNeighbors() {
-            for(int iOuter = 0; iOuter<Size; iOuter++) {
-                for(int jInner = 0; jInner<Size; jInner++) {
+            for(int iOuter = 0; iOuter<this.Size; iOuter++) {
+                for(int jInner = 0; jInner<this.Size; jInner++) {
                     try {
                         this.grid[iOuter, jInner].liveNeighbors=
                             LiveNeighbor(iOuter-1, jInner-1)+ //Upper Left Cell
@@ -112,19 +119,19 @@ namespace CLC_MinesweeperMVC.Models {
         private int LiveNeighbor(int iRow, int iCol) {
             int count = 0;
             // Validate data
-            if((iRow<0)||(iRow>this.Size)||(iCol<0)&&(iCol>this.Size)) {
+            if(!IsSquareSafe(iRow, iCol)) {
                 count=0;
             }
-
-            try {
-                if(this.grid[iRow, iCol].live==true)
-                    count++; // Incriment count
+            else{
+                try {
+                    if(this.grid[iRow, iCol].live==true)
+                        count++; // Incriment count
+                }
+                catch(Exception e) {
+                    // Display error or such
+                    Console.Out.WriteLine("Error on \"NON Live\" Cell. " + e.Data);
+                }
             }
-            catch {
-                // Display error or such
-                //Console.Out.WriteLine("Error on \"NON Live\" Cell. ");
-            }
-
             return count;
         }
         //recursive algorithm to iterate through open cells next to each other 
@@ -188,8 +195,8 @@ namespace CLC_MinesweeperMVC.Models {
         }
 
         //Check if Cell is within the Grid
-        public bool IsSquareSafe(int x, int y) {
-            if(x>-1&&x<Size&&y>-1&&y<Size)
+        public bool IsSquareSafe(int rw, int cl) {
+            if(rw>-1&&rw<this.Size&&cl>-1&&cl<this.Size)
                 return true;
             return false;
         }
@@ -197,8 +204,8 @@ namespace CLC_MinesweeperMVC.Models {
         public void updateButtonLabels() {
             int count = 0;
             int mines = 0;
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
+            for(int rw = 0; rw<this.Size; rw++) {
+                for(int cl = 0; cl<this.Size; cl++) {
                     if(grid[rw, cl].visited==true) {
                         count++;
                         if(grid[rw, cl].liveNeighbors!=0) {//&&btnGrid[rw, cl].Image!=flg) {
@@ -210,13 +217,13 @@ namespace CLC_MinesweeperMVC.Models {
                     }
                 }
             }
-            if(count==((Difficulty*10)*(Difficulty*10))) {
+            if(count==((this.Size)*(this.Size))) {
                 inPlay=false;
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
-            else if(count==(((Difficulty*10)*(Difficulty*10))-mines)) {
-                for(int rw = 0; rw<Difficulty*10; rw++) {
-                    for(int cl = 0; cl<Difficulty*10; cl++) {
+            else if(count==(((this.Size)*(this.Size))-mines)) {
+                for(int rw = 0; rw<this.Size; rw++) {
+                    for(int cl = 0; cl<this.Size; cl++) {
                         if(grid[rw, cl].live) {
                             grid[rw, cl].visited=true;
                             //btnGrid[rw, cl].Image=flg;
@@ -235,8 +242,8 @@ namespace CLC_MinesweeperMVC.Models {
         }
         public void Grid_Button_Click(object sender, EventArgs e) {
 
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
+            for(int rw = 0; rw<this.Size; rw++) {
+                for(int cl = 0; cl<this.Size; cl++) {
                     if((sender as Button).Equals(grid[rw, cl])) {
                         if(e.ToString()!=null) {
                             if(grid[rw, cl].Image==null) { //Should be grid[rw,cl].Image==null
@@ -278,7 +285,7 @@ namespace CLC_MinesweeperMVC.Models {
                 // Form1 form1 = new Form1();
                 //form1.Show();
             }
-            updateButtonLabels();
+            //updateButtonLabels();
             //ButtonPanel.Update();
             //Set Background of clicked button to a different color
             (sender as Button).BackColor=Color.Red;
@@ -287,8 +294,8 @@ namespace CLC_MinesweeperMVC.Models {
 
         
         public void ShowAll() {
-            for(int rw = 0; rw<Difficulty*10; rw++) {
-                for(int cl = 0; cl<Difficulty*10; cl++) {
+            for(int rw = 0; rw<this.Size; rw++) {
+                for(int cl = 0; cl<this.Size; cl++) {
                     if(grid[rw, cl].live) {//&&grid[rw, cl].Image!=flg) {
                         //btnGrid[rw, cl].Image=bmb;
                     }
@@ -302,6 +309,7 @@ namespace CLC_MinesweeperMVC.Models {
         public List<CellModel> ConvertGridtoList() {
             List<CellModel> brdList = new List<CellModel>();
             foreach(CellModel brd in grid) {
+                brd.countValue=brdList.Count();
                 brdList.Add(brd);
             }
             return brdList;

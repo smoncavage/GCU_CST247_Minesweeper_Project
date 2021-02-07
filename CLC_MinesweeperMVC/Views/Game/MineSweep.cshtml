@@ -3,6 +3,8 @@
 
 @{
     ViewBag.Title="BoardPage";
+    Layout="~/Views/Shared/_Layout.cshtml"
+
 }
 
 <!DOCTYPE html>
@@ -12,7 +14,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>MineSweep</title>
     @{
-        Html.RenderPartial("_BoardPage", Model);
+        Html.Partial("_BoardPage", Model);
+
     }
 </head>
 <body>
