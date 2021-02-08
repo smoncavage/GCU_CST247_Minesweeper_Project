@@ -11,21 +11,20 @@ namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
         Bitmap flg = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
         Bitmap bmb = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
-        public static int Difficulty;
-        public static int brdSize;
+        public static int Difficulty=1;
+        public static int brdSize=7;
         private static List<CellModel> buttons = new List<CellModel>();
-        public  bool isWon;
+        public  bool isWon=false;
         public CellModel[,] btnGrid = new CellModel[Difficulty*7, Difficulty*7];
-        BoardModel myBoard = new BoardModel(brdSize, Difficulty);
+        BoardModel myBoard = new BoardModel(brdSize,Difficulty);
 
         // GET: Button
         public ActionResult Index(string radioButton) {
             Difficulty = Int32.Parse(radioButton);
             ViewBag.message = Difficulty;
             brdSize = Difficulty*7;
-            myBoard.size=brdSize;
-            myBoard.difficulty=Difficulty;
-            buttons = myBoard.gridList;
+            myBoard=new BoardModel(brdSize, Difficulty);
+            buttons = myBoard.ConvertGridtoList();
             ViewBag.ButtonList=buttons;
             return PartialView("_BoardPage",myBoard);
         }
@@ -63,6 +62,8 @@ namespace CLC_MinesweeperMVC.Controllers{
                     
                 }
             }
+            buttons=myBoard.ConvertGridtoList();
+            ViewBag.ButtonList=buttons;
             if(isWon) {
                 myBoard.ShowAll();
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);

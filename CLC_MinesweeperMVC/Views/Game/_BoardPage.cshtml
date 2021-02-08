@@ -1,4 +1,5 @@
 ﻿@using CLC_MinesweeperMVC.Controllers
+@using CLC_MinesweeperMVC.Models
 @model CLC_MinesweeperMVC.Models.BoardModel
     @{
         ViewBag.Title="BoardPage";
@@ -19,6 +20,7 @@
             var difficulty = ViewBag.Message*7;
             var brdSize = difficulty;
             int count = -1;
+            List<CellModel> cllMdl = ViewBag.ButtonList;
         }
 
             @for(int rw = 0; rw<Model.Size; rw++) {
@@ -28,18 +30,19 @@
                     var buttonId = count;
                 <td>
                     
-                    <button name="BoardButtons" style="width:50px; height:50px;background-color:beige" id="@buttonId+" onclick="myFunction" type="submit" value="@count">
-                        
-                        @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
-                            
-                            <img src="~/Images/bomb.bmp" />
+                    <button name="BoardButtons" style="width:40px; height:40px;background-color:beige" id="@buttonId+" onclick="myFunction" type="submit" value="@count">
+                        @foreach(CellModel cll in cllMdl) {
+                            if(cll.visited&&Model.grid[rw, cl].live) {
 
+                                <img src="~/Images/bomb.bmp" />
+
+                            }
+                            else if(cll.visited&&!Model.grid[rw, cl].live) {
+                                <value style="font-family:Stencil; background-color:chartreuse">@Model.grid[rw, cl].liveNeighbors</value>
+                            }
                         }
-                        else if(Model.grid[rw, cl].visited&&!Model.grid[rw,cl].live) {
-                            <value style="font-family:Stencil; background-color:chartreuse">@Model.grid[rw, cl].liveNeighbors</value>
-                        }
-                        <!--<img src="~/Images/checkered_flag.bmp" />-->
-                    </button>
+                            <!--<img src="~/Images/checkered_flag.bmp" />-->
+                        </button>
                 </td>
                 }
             </tr>
