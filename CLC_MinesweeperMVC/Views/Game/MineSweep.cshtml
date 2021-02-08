@@ -2,23 +2,13 @@
 @model CLC_MinesweeperMVC.Models.BoardModel
 
 @{
-    ViewBag.Title="BoardPage";
-    Layout="~/Views/Shared/_Layout.cshtml";
-
+    ViewBag.Title = "BoardPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>MineSweep</title>
+<title>MineSweep</title>
+<div>
     @{
         Html.Partial("_BoardPage", Model);
 
     }
-</head>
-<body>
-    
-</body>
-</html>
+</div>

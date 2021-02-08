@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
-        Bitmap flg = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
-        Bitmap bmb = new Bitmap("C:\\Git_Reps\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
+        Bitmap flg = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
+        Bitmap bmb = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
         public static int Difficulty=1;
         public static int brdSize=7;
         private static List<CellModel> buttons = new List<CellModel>();
