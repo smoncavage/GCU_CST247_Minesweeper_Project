@@ -10,8 +10,8 @@ using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Models {
     public class GameModel {
-        System.Drawing.Image flg = System.Drawing.Image.FromFile(@"C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\Images\bomb.bmp");
-        System.Drawing.Image bmb = System.Drawing.Image.FromFile(@"C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\Images\checkered_flag.bmp");
+        System.Drawing.Image flg = System.Drawing.Image.FromFile(@"~/Images/bomb.bmp");
+        System.Drawing.Image bmb = System.Drawing.Image.FromFile(@"~/Images/bomb.bmp");
         public static Stopwatch watch = new Stopwatch();
         static BoardModel myBoard;
         public  bool isWon;

@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace CLC_MinesweeperMVC.Controllers{
     public class GameController : Controller{
-        Bitmap flg = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\checkered_flag.bmp");
-        Bitmap bmb = new Bitmap("D:\\GitHub\\GCU_CST247_CLC_Project\\CLC_MinesweeperMVC\\Images\\bomb.bmp");
+        public ImageMap flg = new ImageMap();
+        public ImageMap bmb = new ImageMap();
         public static int Difficulty=1;
         public static int brdSize=7;
         private static List<CellModel> buttons = new List<CellModel>();
@@ -20,6 +20,8 @@ namespace CLC_MinesweeperMVC.Controllers{
 
         // GET: Button
         public ActionResult Index(string radioButton) {
+            flg.ImageUrl="~/Images/checkered_flag.bmp";
+            bmb.ImageUrl="~/Images/bomb.bmp";
             Difficulty = Int32.Parse(radioButton);
             ViewBag.message = Difficulty;
             brdSize = Difficulty*7;
@@ -31,7 +33,7 @@ namespace CLC_MinesweeperMVC.Controllers{
 
         // GET: Game
         public ActionResult Game() {
-            return PartialView("_BoardPage");
+            return View("_BoardPage");
         }
         
         [HttpPost]
@@ -68,14 +70,14 @@ namespace CLC_MinesweeperMVC.Controllers{
                 myBoard.ShowAll();
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
-            myBoard.updateButtonLabels();
+            myBoard.UpdateButtonLabels();
             //(sender as Button).BackColor=Color.AliceBlue;
             return PartialView("_BoardPage", myBoard);
         }
 
         
         public ActionResult BoardPage() {
-            return PartialView(myBoard);
+            return View(myBoard);
         }
         
 

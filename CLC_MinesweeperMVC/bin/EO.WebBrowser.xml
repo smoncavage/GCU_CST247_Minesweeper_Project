@@ -1801,26 +1801,6 @@
             Gets or sets the current Url.
             </summary>
     </member>
-    <member name="P:EO.WebBrowser.WebView.CustomUserAgent">
-      <summary>
-            Gets or sets custom user agent string.
-            </summary>
-      <remarks>
-        <para>
-            Set this property to override the default user agent string. The default user agent string is
-            the same as Google Chrome browser except for specific version number might be different.
-            </para>
-        <para>
-            Many web servers use user agent string to detect client browser type and serve different version
-            of HTML code based on the detected browser type. As such if you change the user agent to a completely
-            "unknown" user agent string, the server may serve the "wrong" HTML code which can result in page
-            not displaying correctly. As such it is suggested that your custom user agent string is not
-            something completely different, but a string that append extra information to the default user
-            agent string. To find out the default user agent string, you can visit a website that displays
-            your user agent string, such as whatsmyuseragent.com.
-            </para>
-      </remarks>
-    </member>
     <member name="P:EO.WebBrowser.WebView.AcceptLanguage">
       <summary>
             Gets or sets the Accept-Langauge header entry.

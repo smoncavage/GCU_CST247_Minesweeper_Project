@@ -2,14 +2,14 @@
 @using CLC_MinesweeperMVC.Models
 @model CLC_MinesweeperMVC.Models.BoardModel
 @{
-    ViewBag.Title = "BoardPage";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title="BoardPage";
+    Layout="~/Views/Shared/_Layout.cshtml";
     var ajaxOptions = new AjaxOptions();
-    ajaxOptions.HttpMethod = "POST";
-    ajaxOptions.InsertionMode = InsertionMode.Replace;
-    ajaxOptions.UpdateTargetId = "boardDetails";
-    ajaxOptions.OnSuccess = "ajaxSuccess";
-    
+    ajaxOptions.HttpMethod="POST";
+    ajaxOptions.InsertionMode=InsertionMode.InsertAfter;
+    ajaxOptions.UpdateTargetId="boardDetails";
+    ajaxOptions.OnSuccess="ajaxSuccess";
+
 }
 @section scripts {
     <script>
@@ -21,39 +21,33 @@
         }
 
     </script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 }
 
 <div id="boardDetails" style="text-align:center">
-    @using (Ajax.BeginForm("OnButtonClick", "Game", ajaxOptions, new { id = "myForm" }))
-    {
+    @using(Ajax.BeginForm("OnButtonClick", "Game", ajaxOptions, new { id = "myForm" })) {
         <table align="center" id="Table" cellspacing="0">
             @{
-                var difficulty = ViewBag.Message * 7;
+                var difficulty = ViewBag.Message*7;
                 var brdSize = difficulty;
                 int count = -1;
                 //List<CellModel> cllMdl = ViewBag.ButtonList;
             }
 
-            @for (int rw = 0; rw < Model.Size; rw++)
-            {
+            @for(int rw = 0; rw<Model.Size; rw++) {
                 <tr>
-                    @for (int cl = 0; cl < Model.Size; cl++)
-                    {
+                    @for(int cl = 0; cl<Model.Size; cl++) {
                         count++;
                         var buttonId = count;
                         <td>
 
-                            <button name="BoardButtons" style="width:40px; height:40px;background-color:beige" id="@buttonId+" type="submit" value="@count">
+                            <button name="BoardButtons" style="width:40px; height:40px;background-color:beige" id="@buttonId+" type="submit" value="@count" onCl>
 
-                                @if (Model.grid[rw, cl].visited && Model.grid[rw, cl].live)
-                                {
+                                @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
 
                                     <img src="~/Images/bomb.bmp" />
 
                                 }
-                                else if (Model.grid[rw, cl].visited && !Model.grid[rw, cl].live)
-                                {
+                                else if(Model.grid[rw, cl].visited&&!Model.grid[rw, cl].live) {
                                     <value style="font-family:Stencil; background-color:chartreuse">@Model.grid[rw, cl].liveNeighbors</value>
                                 }
 

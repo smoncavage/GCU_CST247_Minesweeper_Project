@@ -804,11 +804,6 @@
             Gets or sets whether to disable GPU.
             </summary>
     </member>
-    <member name="P:EO.WebEngine.EngineOptions.AutoScanCommonPlugins">
-      <summary>
-            Gets or sets a value indicating whether to automatically scan commonly used plugins.
-            </summary>
-    </member>
     <member name="P:EO.WebEngine.EngineOptions.AdditionalPluginsDirs">
       <summary>
             Gets or sets additional plugin directories.

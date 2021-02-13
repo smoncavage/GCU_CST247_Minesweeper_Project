@@ -10,6 +10,7 @@ namespace CLC_MinesweeperMVC.Models {
         public bool visited = false;
         public int liveNeighbors = 0;
         public bool live = false;
+        public bool isFlagged { get; set; }
         public int countValue { get; set; }
 
         public CellModel() {

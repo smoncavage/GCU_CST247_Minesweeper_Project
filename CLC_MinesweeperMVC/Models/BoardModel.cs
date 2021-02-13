@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,7 @@ namespace CLC_MinesweeperMVC.Models {
         public bool btnState;
         public CellModel[,] grid;
         public List<CellModel> gridList = new List<CellModel>();
+        public Stopwatch watch = new Stopwatch();
 
         //Set/Get Values for Board params
         public int Size {
@@ -61,8 +63,9 @@ namespace CLC_MinesweeperMVC.Models {
             grid=new CellModel[Size, Size];
             for(int iOuter = 0; iOuter<Size; iOuter++) {
                 for(int jInner = 0; jInner<Size; jInner++) {
-                    grid[iOuter, jInner]=new CellModel();
-                    grid[iOuter, jInner].countValue=count++;
+                    grid[iOuter, jInner]=new CellModel {
+                        countValue=count++
+                    };
                     //gridList.Add(grid[iOuter, jInner]);
                 }
             }
@@ -201,7 +204,7 @@ namespace CLC_MinesweeperMVC.Models {
             return false;
         }
 
-        public void updateButtonLabels() {
+        public void UpdateButtonLabels() {
             int count = 0;
             int mines = 0;
             for(int rw = 0; rw<Size; rw++) {
