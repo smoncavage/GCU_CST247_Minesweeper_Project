@@ -5,32 +5,33 @@
     ViewBag.Title="BoardPage";
     Layout="~/Views/Shared/_Layout.cshtml";
     var ajaxOptions = new AjaxOptions();
-<<<<<<< Updated upstream
+
     ajaxOptions.HttpMethod="POST";
     ajaxOptions.InsertionMode=InsertionMode.Replace;
     ajaxOptions.UpdateTargetId="boardDetails";
-    //ajaxOptions.OnSuccess = "ajaxSuccess";
 
-=======
-    ajaxOptions.HttpMethod = "POST";
-    ajaxOptions.InsertionMode = InsertionMode.Replace;
-    ajaxOptions.UpdateTargetId = "boardDetails";
-    //ajaxOptions.OnSuccess = "ajaxSuccess";
-    
->>>>>>> Stashed changes
 }
 @section scripts {
     <script>
         function myFunction() {
-            document.getElementById(BoardButtons).style.color = "red";
-            preventDefault();
-            OnButtonClick(BoardButtons);
+            $.ajax({
+                type: "POST",
+                url: "OnButtonClick/BoardButtons.ID",
+                async: false,
+                success: function (msg) {
+                    ServiceSucceeded(msg);
+                },
+                error: function () {
+                    return "error";
+                }
+            })
+            
         }
     </script>
 }
 
 <div id="boardDetails" style="text-align:center">
-    @using(Ajax.BeginForm("OnButtonClick", "Game", ajaxOptions, new { id = "myForm" })) {
+    @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post, new { id = "myForm" })) {
         <table align="center" id="Table" cellspacing="0">
             @{
                 var difficulty = ViewBag.Message*7;
@@ -46,7 +47,7 @@
                         var buttonId = count;
                         <td>
 
-                            <button name="BoardButtons" style="width:40px; height:40px;background-color:beige" id="@buttonId+" type="submit" value="@count" onCl>
+                            <button name="BoardButtons" style="width:32px; height:32px;background-color:beige" id="@buttonId+" type="submit" value="@count" onclick="myFunction">
 
                                 @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
 

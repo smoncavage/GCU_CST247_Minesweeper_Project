@@ -76,8 +76,8 @@ namespace CLC_MinesweeperMVC.Controllers {
         }
 
 
-        public ActionResult BoardPage() {
-            return View(myBoard);
+        public PartialViewResult BoardPage() {
+            return PartialView("_BoardPage", myBoard); ;
         }
 
 

@@ -76,7 +76,8 @@ namespace CLC_MinesweeperMVC.Models {
             Random rand = new Random();
             
             grid=InitializeGrid(); //*This is Necessary* otherwise will recieve Null Object Exception
-            mine=totalsize/(8-difficulty);
+            //mine=totalsize/(8-difficulty);
+            mine=size;
             for(int iRand = mine; iRand>0; iRand--) {
                 int randwth = rand.Next(Size+1);
                 int randlth = rand.Next(Size+1);
