@@ -37,7 +37,7 @@ namespace CLC_MinesweeperMVC.Controllers{
         }
         
         [HttpPost]
-        public ActionResult OnButtonClick(string BoardButtons) {
+        public PartialViewResult OnButtonClick(string BoardButtons) {
             //var buttonValue = ButtonName.;
             int cnt = int.Parse(BoardButtons);
             ViewBag.message=Difficulty;
@@ -75,7 +75,7 @@ namespace CLC_MinesweeperMVC.Controllers{
             return PartialView("_BoardPage", myBoard);
         }
 
-        
+
         public ActionResult BoardPage() {
             return View(myBoard);
         }

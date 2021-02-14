@@ -2,8 +2,23 @@
 @{
     ViewBag.Title = "LoginPassed";
 }
-
+<script>
+    var countDownVal = 3;
+    $('#count').html(countDownVal);
+    var timer1 = setInterval(function () { myTimer() }, 1000);
+    function myTimer() {
+        countDownVal--;
+        $('#count').html(countDownVal);
+        if (countDownVal == 0) {
+            clearInterval(timer1);
+            window.location.replace("/Home/Index");
+        }
+    }
+</script>
 <h2>LoginPassed</h2>
 <body>
-    Login passed.
+    Login passed. Redirecting to Home Page.
+
+    <div id="count"></div>
+
 </body>

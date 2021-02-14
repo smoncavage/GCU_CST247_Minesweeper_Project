@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <fieldset>
+        <legend> User DashBoard </legend>
+
+        @if (Session["UserName"] != null)
+        {
+            <text>Welcome @Session["UserName"].ToString() </text>
+        } 
+    </fieldset>   
+</div>
+<div>
+    <h2>@Html.ActionLink("Start New Game", "Index", "Settings")</h2>
+</div>
+<br />
+<div>
+    <h2>SAVED GAMES</h2>
+
+</div>
+<br />
+<div>
+     <h2>ACCOUNT</h2>
+
+</div>

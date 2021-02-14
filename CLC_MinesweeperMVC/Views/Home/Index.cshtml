@@ -1,7 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="jumbotron">
-    <h2>@Html.ActionLink("Start New Game", "", "Settings")</h2>
+    <h2>@Html.ActionLink("Start New Game", "Index", "Settings")</h2>
 </div>
+

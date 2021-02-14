@@ -13,6 +13,11 @@ namespace CLC_MinesweeperMVC {
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Home",
+                url: "{Home}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
@@ -34,6 +39,11 @@ namespace CLC_MinesweeperMVC {
                 name: "Settings",
                 url: "{Settings}",
                 defaults: new { controller = "Settings", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Dashboard",
+                url: "{Dashboard}",
+                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

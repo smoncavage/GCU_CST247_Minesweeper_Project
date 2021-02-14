@@ -10,6 +10,7 @@ namespace CLC_MinesweeperMVC.Services.Data {
     public class SecurityDAO {
         public bool FindByUser(User user) {
 
+            //string connectionString = "Server=(localdb)\\MSSQLLocalDB; Initial Catalog=Test; Integrated Security=True; Trusted_Connection=yes;";
             string connectionString = "Server=(localdb)\\MSSQLLocalDB; Initial Catalog=MinesweeperApp; Integrated Security=true; Trusted_Connection=yes;";
             string query = "SELECT * FROM dbo.Users WHERE username=@username AND password=@password";
 

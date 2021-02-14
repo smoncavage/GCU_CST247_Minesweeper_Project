@@ -2,8 +2,24 @@
 @{
     ViewBag.Title = "LoginFailed";
 }
+<script>
+    var countDownVal = 3;
+    $('#count').html(countDownVal);
+    var timer1 = setInterval(function () { myTimer() }, 1000);
+    function myTimer() {
+        countDownVal--;
+        $('#count').html(countDownVal);
+        if (countDownVal == 0) {
+            clearInterval(timer1); 
+            window.location.replace("Login"); 
+        }
+    }
+</script>
 
 <h2>LoginFailed</h2>
 <body>
-    Login failed!
+    Login failed! Redirecting to Login page.
+
+    <div id="count"></div>
+
 </body>

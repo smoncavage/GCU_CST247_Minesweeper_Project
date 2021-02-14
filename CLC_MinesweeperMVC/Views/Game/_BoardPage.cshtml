@@ -5,11 +5,19 @@
     ViewBag.Title="BoardPage";
     Layout="~/Views/Shared/_Layout.cshtml";
     var ajaxOptions = new AjaxOptions();
+<<<<<<< Updated upstream
     ajaxOptions.HttpMethod="POST";
     ajaxOptions.InsertionMode=InsertionMode.InsertAfter;
     ajaxOptions.UpdateTargetId="boardDetails";
     ajaxOptions.OnSuccess="ajaxSuccess";
 
+=======
+    ajaxOptions.HttpMethod = "POST";
+    ajaxOptions.InsertionMode = InsertionMode.Replace;
+    ajaxOptions.UpdateTargetId = "boardDetails";
+    //ajaxOptions.OnSuccess = "ajaxSuccess";
+    
+>>>>>>> Stashed changes
 }
 @section scripts {
     <script>

@@ -1,0 +1,60 @@
+2021-02-13 14:32:33.0981 INFO      Entering LoginController.Login()
+2021-02-13 14:32:33.3386 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:32:33.3386 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:34:09.7670 INFO      Entering LoginController.Login()
+2021-02-13 14:34:09.9635 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:34:09.9635 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:35:20.2275 INFO      Entering LoginController.Login()
+2021-02-13 14:35:20.4235 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:35:20.4245 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:37:06.6328 INFO      Entering LoginController.Login()
+2021-02-13 14:37:06.8328 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:37:06.8328 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:37:31.1592 INFO      Entering LoginController.Login()
+2021-02-13 14:37:31.1592 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"safd","PASSWORD":"asdasd","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:37:31.1592 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 14:39:17.1525 INFO      Entering LoginController.Login()
+2021-02-13 14:39:17.3450 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:39:17.3450 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:39:37.4164 INFO      Entering LoginController.Login()
+2021-02-13 14:39:37.4269 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:39:37.4269 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:39:39.8655 INFO      Entering LoginController.Login()
+2021-02-13 14:39:39.8655 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:39:39.8655 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:44:54.0319 INFO      Entering LoginController.Login()
+2021-02-13 14:44:54.2394 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":null,"PASSWORD":null,"IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:44:54.2394 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 14:45:01.9602 INFO      Entering LoginController.Login()
+2021-02-13 14:45:01.9752 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"bdfb","PASSWORD":"dfdg","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:45:01.9752 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 14:45:29.2579 INFO      Entering LoginController.Login()
+2021-02-13 14:45:29.2579 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:45:29.2579 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 14:57:05.4299 INFO      Entering LoginController.Login()
+2021-02-13 14:57:05.6280 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"hg","PASSWORD":"fdghdfg","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:57:05.6280 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 14:58:41.7124 INFO      Entering LoginController.Login()
+2021-02-13 14:58:41.9159 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"dfsg","PASSWORD":"sdfg","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:58:41.9159 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 14:59:34.0820 INFO      Entering LoginController.Login()
+2021-02-13 14:59:34.3260 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"bfdg","PASSWORD":"dsfgdf","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 14:59:34.3260 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 15:00:19.1040 INFO      Entering LoginController.Login()
+2021-02-13 15:00:19.3410 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"dsfg","PASSWORD":"sdfg","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 15:00:19.3410 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 15:01:08.6220 INFO      Entering LoginController.Login()
+2021-02-13 15:01:08.8795 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"bvnm","PASSWORD":"vbnmvbn","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 15:01:08.8795 INFO      Exit LoginController.Login() with Login failing
+2021-02-13 15:02:22.2138 INFO      Entering LoginController.Login()
+2021-02-13 15:02:22.4543 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 15:02:22.4543 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 15:03:27.1540 INFO      Entering LoginController.Login()
+2021-02-13 15:03:27.3485 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 15:03:27.3485 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 15:04:26.2951 INFO      Entering LoginController.Login()
+2021-02-13 15:04:26.5351 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 15:04:26.5351 INFO      Exit LoginController.Login() with Login passing
+2021-02-13 15:05:16.9428 INFO      Entering LoginController.Login()
+2021-02-13 15:05:17.1883 INFO      Parameters are:{"Id":0,"FIRSTNAME":null,"LASTNAME":null,"GENDER":null,"DateOfBirth":null,"ADDRESS":null,"STATE":null,"ZIPCODE":0,"EMAIL":null,"USERNAME":"jsmith","PASSWORD":"1234","IsEmailVerified":false,"ActivationCode":"00000000-0000-0000-0000-000000000000","ConfirmPassword":null,"IsUserVerified":false}
+2021-02-13 15:05:17.1883 INFO      Exit LoginController.Login() with Login passing
