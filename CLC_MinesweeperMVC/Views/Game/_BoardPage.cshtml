@@ -7,9 +7,9 @@
     var ajaxOptions = new AjaxOptions();
 <<<<<<< Updated upstream
     ajaxOptions.HttpMethod="POST";
-    ajaxOptions.InsertionMode=InsertionMode.InsertAfter;
+    ajaxOptions.InsertionMode=InsertionMode.Replace;
     ajaxOptions.UpdateTargetId="boardDetails";
-    ajaxOptions.OnSuccess="ajaxSuccess";
+    //ajaxOptions.OnSuccess = "ajaxSuccess";
 
 =======
     ajaxOptions.HttpMethod = "POST";
@@ -22,12 +22,10 @@
 @section scripts {
     <script>
         function myFunction() {
-
             document.getElementById(BoardButtons).style.color = "red";
             preventDefault();
             OnButtonClick(BoardButtons);
         }
-
     </script>
 }
 

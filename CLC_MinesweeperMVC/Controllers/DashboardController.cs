@@ -4,13 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CLC_MinesweeperMVC.Controllers
-{
-    public class DashboardController : Controller
-    {
+namespace CLC_MinesweeperMVC.Controllers {
+    public class DashboardController:Controller {
         // GET: Dashboard
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View();
         }
     }

@@ -7,35 +7,35 @@ using System.Drawing;
 using CLC_MinesweeperMVC.Models;
 using System.Web.UI.WebControls;
 
-namespace CLC_MinesweeperMVC.Controllers{
-    public class GameController : Controller{
+namespace CLC_MinesweeperMVC.Controllers {
+    public class GameController:Controller {
         public ImageMap flg = new ImageMap();
         public ImageMap bmb = new ImageMap();
-        public static int Difficulty=1;
-        public static int brdSize=7;
+        public static int Difficulty = 1;
+        public static int brdSize = 7;
         private static List<CellModel> buttons = new List<CellModel>();
-        public  bool isWon=false;
+        public bool isWon = false;
         public CellModel[,] btnGrid = new CellModel[Difficulty*7, Difficulty*7];
-        BoardModel myBoard = new BoardModel(brdSize,Difficulty);
+        BoardModel myBoard = new BoardModel(brdSize, Difficulty);
 
         // GET: Button
         public ActionResult Index(string radioButton) {
             flg.ImageUrl="~/Images/checkered_flag.bmp";
             bmb.ImageUrl="~/Images/bomb.bmp";
-            Difficulty = Int32.Parse(radioButton);
-            ViewBag.message = Difficulty;
-            brdSize = Difficulty*7;
+            Difficulty=Int32.Parse(radioButton);
+            ViewBag.message=Difficulty;
+            brdSize=Difficulty*7;
             myBoard=new BoardModel(brdSize, Difficulty);
-            buttons = myBoard.ConvertGridtoList();
+            buttons=myBoard.ConvertGridtoList();
             ViewBag.ButtonList=buttons;
-            return PartialView("_BoardPage",myBoard);
+            return PartialView("_BoardPage", myBoard);
         }
 
         // GET: Game
         public ActionResult Game() {
             return View("_BoardPage");
         }
-        
+
         [HttpPost]
         public PartialViewResult OnButtonClick(string BoardButtons) {
             //var buttonValue = ButtonName.;
@@ -61,7 +61,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                             myBoard.grid[rw, cl].visited=true;
                         }
                     }
-                    
+
                 }
             }
             buttons=myBoard.ConvertGridtoList();
@@ -79,8 +79,8 @@ namespace CLC_MinesweeperMVC.Controllers{
         public ActionResult BoardPage() {
             return View(myBoard);
         }
-        
 
-        
+
+
     }
 }

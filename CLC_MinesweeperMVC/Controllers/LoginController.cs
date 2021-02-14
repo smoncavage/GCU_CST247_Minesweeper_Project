@@ -13,34 +13,28 @@ using Controller = System.Web.Mvc.Controller;
 using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
 using HttpPostAttribute = System.Web.Mvc.HttpPostAttribute;
 
-namespace CLC_MinesweeperMVC.Controllers
-{
-    public class LoginController : Controller
-    {
+namespace CLC_MinesweeperMVC.Controllers {
+    public class LoginController:Controller {
         // Logger decleration 
         private static Logger logger = LogManager.GetLogger("myAppLoggerRules");
 
         // GET: Login
         [HttpGet]
-        public ActionResult Login()
-        {
+        public ActionResult Login() {
             return View("~/Views/Home/Login.cshtml");
         }
 
         [HttpPost]
         // Check for valid login credentials
-        public ActionResult Login(User user)
-        {
+        public ActionResult Login(User user) {
             // this action is for handling post (login)
-            if (ModelState.IsValid) // this is check validity
+            if(ModelState.IsValid) // this is check validity
             {
-                using (MyDBEntities dc = new MyDBEntities())
-                {
-                    var v = dc.Users.Where(a => a.USERNAME.Equals(user.USERNAME) && a.PASSWORD.Equals(user.PASSWORD)).FirstOrDefault();
-                    if (v != null)
-                    {
-                        Session["Id"] = v.Id.ToString();
-                        Session["USERNAME"] = v.USERNAME.ToString();
+                using(MyDBEntities dc = new MyDBEntities()) {
+                    var v = dc.Users.Where(a => a.USERNAME.Equals(user.USERNAME)&&a.PASSWORD.Equals(user.PASSWORD)).FirstOrDefault();
+                    if(v!=null) {
+                        Session["Id"]=v.Id.ToString();
+                        Session["USERNAME"]=v.USERNAME.ToString();
                         return RedirectToAction("Dashboard");
                     }
                 }
@@ -48,14 +42,11 @@ namespace CLC_MinesweeperMVC.Controllers
             return View("~/Views/Login/LoginFailed.cshtml");
         }
 
-        public ActionResult Dashboard()
-        {
-            if (Session["Id"] != null)
-            {
+        public ActionResult Dashboard() {
+            if(Session["Id"]!=null) {
                 return View();
             }
-            else
-            {
+            else {
                 return RedirectToAction("~/Views/Home/Login.cshtml");
             }
         }
@@ -64,15 +55,12 @@ namespace CLC_MinesweeperMVC.Controllers
         // Handeler for Logging in to website
         public ActionResult Login(User model)
         {
-
             logger.Info("Entering LoginController.Login()"); // Logs 
-
             try
             {
                 // Validate the Form POST
                 if (!ModelState.IsValid)
                     return View("~/Views/Home/Login.cshtml");
-
                 // Call Security Service for authentication 
                 SecurityService auth = new SecurityService();
                 bool result = auth.Authenticate(model); // Run authentication return true or false

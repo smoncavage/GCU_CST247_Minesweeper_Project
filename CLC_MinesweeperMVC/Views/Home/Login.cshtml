@@ -1,13 +1,12 @@
 ﻿@using CLC_MinesweeperMVC.Models
 @model User
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title="Login";
 }
 
 <h2>LOGIN</h2>
 
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
-{
+@using(Html.BeginForm("Login", "Login", FormMethod.Post)) {
     <span>Enter Your Userame:</span> @Html.TextBoxFor(UserModel => UserModel.USERNAME)
     <br />
     <span>Enter Your Password: </span> @Html.PasswordFor(UserModel => UserModel.PASSWORD)
@@ -21,4 +20,3 @@
         </div>
     </div>
 }
-

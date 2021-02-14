@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "LoginFailed";
+﻿@{
+    ViewBag.Title="LoginFailed";
 }
 <script>
     var countDownVal = 3;
@@ -10,8 +9,8 @@
         countDownVal--;
         $('#count').html(countDownVal);
         if (countDownVal == 0) {
-            clearInterval(timer1); 
-            window.location.replace("Login"); 
+            clearInterval(timer1);
+            window.location.replace("Login");
         }
     }
 </script>

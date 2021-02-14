@@ -10,8 +10,7 @@ namespace CLC_MinesweeperMVC.Controllers {
             return View();
         }
 
-        public ActionResult Login()
-        {
+        public ActionResult Login() {
             return View("Login");
         }
 

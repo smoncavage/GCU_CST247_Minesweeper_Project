@@ -21,7 +21,7 @@ namespace CLC_MinesweeperMVC.Services.Data {
                 command.Parameters.AddWithValue("@username", user.USERNAME);
                 command.Parameters.AddWithValue("@password", user.PASSWORD);
                 try {
-                connection.Open();
+                    connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
                     if(reader.HasRows) {
