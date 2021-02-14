@@ -387,6 +387,7 @@ D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\obj\Debug\CLC_MinesweeperMVC
 D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\obj\Debug\CLC_MinesweeperMVC.dll
 D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\obj\Debug\CLC_MinesweeperMVC.pdb
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\Images\bomb.bmp
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\Images\checkered_flag.bmp
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\Microsoft.DiaSymReader.Native.x86.dll
@@ -477,6 +478,11 @@ C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\Microsoft.Extensions.L
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\Microsoft.Extensions.Options.ConfigurationExtensions.xml
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\System.Collections.Immutable.xml
 C:\Git_Reps\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\System.Reflection.Metadata.xml
+=======
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\NLog.config
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\NLog.dll
+D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\NLog.xml
+>>>>>>> Stashed changes
 =======
 D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\NLog.config
 D:\GitHub\GCU_CST247_CLC_Project\CLC_MinesweeperMVC\bin\NLog.dll
