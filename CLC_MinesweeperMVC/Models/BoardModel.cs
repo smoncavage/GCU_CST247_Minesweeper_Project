@@ -57,6 +57,7 @@ namespace CLC_MinesweeperMVC.Models {
             difficulty=idifficulty;
             totalsize=Size*Size;
             SetupBombs();
+            inPlay = true;
         }
         public CellModel[,] InitializeGrid() {
             int count=0;

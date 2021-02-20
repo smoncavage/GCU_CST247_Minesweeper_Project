@@ -16,24 +16,33 @@ namespace CLC_MinesweeperMVC.Models {
         public CellModel[,] btnGrid = new CellModel[Difficulty*7, Difficulty*7];
         public BoardModel myBoard = new BoardModel(brdSize, Difficulty);
 
-        public GameModel(){}
+        public GameModel()
+        {
+            if (!myBoard.InPlay)
+            {
+                myBoard = new BoardModel(brdSize, Difficulty);
+            }
+        }
 
         public BoardModel Initialize(int difficulty){
+            Difficulty = difficulty;
             flg.ImageUrl="~/Images/checkered_flag.bmp";
             bmb.ImageUrl="~/Images/bomb.bmp";
             brdSize=Difficulty*7;
-            if(myBoard.inPlay==false) {
-                myBoard=new BoardModel(brdSize, Difficulty);
-                
-                //ViewBag.ButtonList=buttons;
-            }
+   
             buttons=myBoard.ConvertGridtoList();
             return myBoard;
         }
 
-        public BoardModel OnButtonClick(string BoardButtons) {
+        public BoardModel OnButtonClick(int BoardButtons) {
+            
+            if (!myBoard.inPlay)
+            {
+                myBoard = new BoardModel(brdSize, Difficulty);
+            }
             //var buttonValue = ButtonName.;
-            int cnt = int.Parse(BoardButtons);
+            buttons = myBoard.ConvertGridtoList();
+            int cnt = BoardButtons;
             //ViewBag.message=Difficulty;
             for(int rw = 0; rw<brdSize; rw++) {
                 for(int cl = 0; cl<brdSize; cl++) {

@@ -10,9 +10,10 @@ using System.Web.UI.WebControls;
 namespace CLC_MinesweeperMVC.Controllers {
     public class GameController:Controller {
         public static int Difficulty = 1;
-        private GameModel game = new GameModel();
+        private static GameModel game;
         // GET: Button
         public ActionResult Index(string radioButton) {
+            game = new GameModel();
             Difficulty=Int32.Parse(radioButton);
             ViewBag.message=Difficulty;
             game.Initialize(Difficulty);
@@ -26,7 +27,7 @@ namespace CLC_MinesweeperMVC.Controllers {
 
         [HttpPost]
         public PartialViewResult OnButtonClick(string BoardButtons) {
-            game.OnButtonClick(BoardButtons);
+            game.OnButtonClick(Int32.Parse(BoardButtons));
             ViewBag.ButtonList=game.buttons;
             return PartialView("_BoardPage", game.myBoard);
         }

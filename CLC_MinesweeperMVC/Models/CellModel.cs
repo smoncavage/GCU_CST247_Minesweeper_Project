@@ -17,7 +17,7 @@ namespace CLC_MinesweeperMVC.Models {
 
         }
 
-        public CellModel(int _row, int _col, bool _visited, int _liveNeighbors, bool live) {
+        public CellModel(int _row, int _col, bool _visited, int _liveNeighbors, bool live, int cntVal) {
 
         }
 
@@ -45,6 +45,7 @@ namespace CLC_MinesweeperMVC.Models {
             get => live;
             set => live=true;
         }
+
         public object Image { get; internal set; }
     }
 }
