@@ -636,6 +636,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Business\SecurityService.cs" />
     <Compile Include="Services\Data\SecurityDAO.cs" />
+    <Compile Include="Services\Logger\ILogger.cs" />
+    <Compile Include="Services\Logger\MyLogger.cs" />
     <Compile Include="User.cs">
       <DependentUpon>User1Model.tt</DependentUpon>
     </Compile>
@@ -674,7 +676,6 @@
     <EmbeddedResource Include="Images\checkered_flag.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="Images\sprite100.gif" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -2,6 +2,7 @@
 
 using CLC_MinesweeperMVC.Models;
 using CLC_MinesweeperMVC.Services.Business;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,6 +14,8 @@ using System.Web.Mvc;
 
 namespace CLC_MinesweeperMVC.Controllers{
     public class UserController : Controller{
+        private static NLog.Logger logger = LogManager.GetLogger("myAppLoggerRules");
+
         // GET: Register
         [HttpGet]
         public ActionResult Registration(){
@@ -31,6 +34,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                 #region //Email is already Exist 
                 var isExist = IsEmailExist(user.EMAIL);
                 if(isExist) {
+                    logger.Error("User attempted to use an email which already exists.");
                     ModelState.AddModelError("EmailExist", "Email already exist");
                     return View(user);
                 }
@@ -70,6 +74,7 @@ namespace CLC_MinesweeperMVC.Controllers{
                 catch(SqlException e) {
                     Console.WriteLine(e.Message);
                 }
+                logger.Info("New User "+user+"has been added to the database Successfully.");
             }
             else {
                 message="Invalid Request";

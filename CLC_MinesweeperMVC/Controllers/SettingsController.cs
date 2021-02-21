@@ -1,13 +1,14 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CLC_MinesweeperMVC.Controllers
-{
-    public class SettingsController : Controller
-    {
+namespace CLC_MinesweeperMVC.Controllers{
+    public class SettingsController : Controller{
+        private static NLog.Logger logger = LogManager.GetLogger("myAppLoggerRules");
+
         // GET: Difficulty
         public ActionResult Index()
         {
@@ -16,11 +17,11 @@ namespace CLC_MinesweeperMVC.Controllers
 
         [HttpPost]
         // Difficulty paramater being passed to index()
-        public ActionResult OnSelectDifficulty(string radioButton)
-        {
+        public ActionResult OnSelectDifficulty(string radioButton){
+            logger.Info("User has entered the Difficulty page.");
             int Difficulty = Int32.Parse(radioButton);
             GameController.Difficulty = Difficulty;
-
+            logger.Info("User has selected level " + Difficulty +" difficulty.");
             var controller = DependencyResolver.Current.GetService<GameController>();
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
             

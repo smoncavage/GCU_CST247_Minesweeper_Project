@@ -13,7 +13,7 @@
 }
 @section scripts {
     <script>
-        function myFunction() {
+        myFunction = function() {
             $.ajax({
                 type: "POST",
                 url: "OnButtonClick/BoardButtons.ID",
@@ -25,7 +25,14 @@
                     return "error";
                 }
             })
-            
+
+        }
+        function ShowPopup() {
+            window.open('/Game/OpenPopup', "PopupWindow", 'width=400px,height=400px,top=150,left=250');
+        }
+        function ShowFlag() {
+            var button = document.getElementsByName("BoardButtons");
+            button.innerHTML = '<img src="~/Images/checkered_flag.bmp" style="vertical-align:central" width="20" height="20"/>';
         }
     </script>
 }
@@ -34,28 +41,26 @@
     @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post, new { id = "myForm" })) {
         <table align="center" id="Table" cellspacing="0">
             @{
-                var difficulty = ViewBag.Message*7;
-                var brdSize = difficulty;
                 int count = -1;
-                //List<CellModel> cllMdl = ViewBag.ButtonList;
             }
 
-            @for(int rw = 0; rw<Model.Size; rw++) {
+            @for(int rw = 0; rw<Model.size; rw++) {
                 <tr>
-                    @for(int cl = 0; cl<Model.Size; cl++) {
+                    @for(int cl = 0; cl<Model.size; cl++) {
                         count++;
                         var buttonId = count;
                         <td>
 
-                            <button name="BoardButtons" style="width:32px; height:32px;background-color:beige" id="@buttonId+" type="submit" value="@count" onclick="myFunction">
+                            <button name="BoardButtons" style="width:35px; height:35px;background-color:lightgrey" id="button" type="submit" value="@count" onclick="myFunction()" ondblclick="ShowFlag()">
 
                                 @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
+                                    Model.inPlay=false;
+                                    <img src="~/Images/bomb.bmp" width="20" height="20" style="vertical-align:auto" onclick="ShowPopup();"/>
 
-                                    <img src="~/Images/bomb.bmp" />
 
                                 }
                                 else if(Model.grid[rw, cl].visited&&!Model.grid[rw, cl].live) {
-                                    <value style="font-family:Stencil; background-color:chartreuse">@Model.grid[rw, cl].liveNeighbors</value>
+                                    <value style="font-family:Stencil">@Model.grid[rw, cl].liveNeighbors</value>
                                 }
 
                                 <!--<img src="~/Images/checkered_flag.bmp" />-->
@@ -67,4 +72,7 @@
 
         </table>
     }
+</div>
+<div>
+    <p style="text-align:center; font-family:Stencil">Click to select square. Double-Click for Flag!</p>
 </div>

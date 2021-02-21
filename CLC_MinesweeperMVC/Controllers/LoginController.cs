@@ -28,8 +28,7 @@ namespace CLC_MinesweeperMVC.Controllers {
         // Check for valid login credentials
         public ActionResult Login(User user) {
             // this action is for handling post (login)
-            if(ModelState.IsValid) // this is check validity
-            {
+            if(ModelState.IsValid){ // this is check validity
                 using(MyDBEntities dc = new MyDBEntities()) {
                     var v = dc.Users.Where(a => a.USERNAME.Equals(user.USERNAME)&&a.PASSWORD.Equals(user.PASSWORD)).FirstOrDefault();
                     if(v!=null) {
@@ -39,6 +38,7 @@ namespace CLC_MinesweeperMVC.Controllers {
                     }
                 }
             }
+            logger.Info(user+" has logged in.");
             return View("~/Views/Login/LoginFailed.cshtml");
         }
 
@@ -47,6 +47,7 @@ namespace CLC_MinesweeperMVC.Controllers {
                 return View();
             }
             else {
+                logger.Info("Attempted protected page entry. Re-routed user.");
                 return RedirectToAction("~/Views/Home/Login.cshtml");
             }
         }

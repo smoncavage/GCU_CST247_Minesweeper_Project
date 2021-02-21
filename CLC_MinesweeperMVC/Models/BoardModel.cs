@@ -75,22 +75,26 @@ namespace CLC_MinesweeperMVC.Models {
         //Set bomb cells
         public CellModel[,] SetupBombs() {
             Random rand = new Random();
-            
+            int countBombs=0;
             grid=InitializeGrid(); //*This is Necessary* otherwise will recieve Null Object Exception
             //mine=totalsize/(8-difficulty);
-            mine=size;
+            mine=size*difficulty;
             for(int iRand = mine; iRand>0; iRand--) {
                 int randwth = rand.Next(Size+1);
                 int randlth = rand.Next(Size+1);
                 //Validate random #'s
                 if((randwth>=0)&&(randwth<Size)&&(randlth>=0)&&(randlth<Size)&&!grid[randlth, randwth].live) {
                     grid[randlth, randwth].live=true;
+                    countBombs++;
                 }
                 else {
                     //print only for debugging
                     //grid[randwth, randlth].live=false;
                 }
-            }
+            }/*
+            if(countBombs!=mine) {
+                SetupBombs();
+            }*/
             CalculateLiveNeighbors();
             return grid;
         }
@@ -245,59 +249,7 @@ namespace CLC_MinesweeperMVC.Models {
                 //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
             }
         }
-        public void Grid_Button_Click(object sender, EventArgs e) {
-
-            for(int rw = 0; rw<Size; rw++) {
-                for(int cl = 0; cl<Size; cl++) {
-                    if((sender as Button).Equals(grid[rw, cl])) {
-                        if(e.ToString()!=null) {
-                            if(grid[rw, cl].Image==null) { //Should be grid[rw,cl].Image==null
-                                ///grid[rw, cl].Image=flg;
-                                //grid[rw, cl].Enabled=true;
-                                grid[rw, cl].visited=true;
-                            }
-                            else {
-                                //grid[rw, cl].Image.Dispose();
-                                grid[rw, cl].visited=false;
-                            }
-                        }
-                        else {
-                            if(grid[rw, cl].live) {
-                                //watch.Stop();
-                                ShowAll();
-                                //MessageBox.Show("You hit a Mine! Length of play was: "+watch.Elapsed);
-                                // Form1 form1 = new Form1();
-                                //form1.Show();
-                            }
-                            else {
-                                if(grid[rw, cl].liveNeighbors==0&&!grid[rw, cl].live) {
-                                    //myBoard.FloodFill(rw, cl,1);
-                                    //FloodShow(rw, cl);
-                                    CheckSurround(rw, cl);
-                                }
-                                grid[rw, cl].visited=true;
-                                (sender as Button).Text=grid[rw, cl].liveNeighbors.ToString();
-                            }
-                        }
-                    }
-                }
-            }
-            if(!inPlay) {
-                //watch.Stop();
-                ShowAll();
-                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
-                //MessageBox.Show("You Won! Length of play was: "+watch.Elapsed);
-                // Form1 form1 = new Form1();
-                //form1.Show();
-            }
-            //updateButtonLabels();
-            //ButtonPanel.Update();
-            //Set Background of clicked button to a different color
-            (sender as Button).BackColor=Color.Red;
-
-        }
-
-        
+    
         public void ShowAll() {
             for(int rw = 0; rw<Size; rw++) {
                 for(int cl = 0; cl<Size; cl++) {
