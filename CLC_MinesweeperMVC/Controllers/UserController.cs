@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace CLC_MinesweeperMVC.Controllers{
+    [Authorize]
     public class UserController : Controller{
         private static NLog.Logger logger = LogManager.GetLogger("myAppLoggerRules");
 

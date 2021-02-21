@@ -2,37 +2,50 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - GCU CLC-247 MineSweeper</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
     @Scripts.Render("~/Scripts/jquery-3.5.1.js")
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
-
-</head>
+   
+    </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header" style="text-align: center; font-family: Stencil">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    Page Select
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("GCU CLC-247 MineSweeper Web Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Login")</li>
-                    <li>@Html.ActionLink("Register", "Registration", "User")</li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            @Html.ActionLink("GCU CLC-247 MineSweeper Web Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Dashboard", "Dashboard", "Login", new { @class = "nav-link" })</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-center text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @User.Identity.Name
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Logout", "Logout", "Login", new { @class = "nav-link text-center text-uppercase" })
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Login", "Login", "Login", new { @class = "nav-link float-left" })</li>
+                    <li>@Html.ActionLink("Register", "Registration", "User", new { @class = "nav-link float-left" })</li>
+                }
+            </ul>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content" style="text-align: center; font-family: Stencil">
         @RenderBody()
         <hr />

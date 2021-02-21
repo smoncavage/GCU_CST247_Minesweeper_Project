@@ -4,9 +4,13 @@
 <h2>Login</h2>
 
 @using(Html.BeginForm("Login", "Login", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+<div>
     <span>Enter Your Userame:</span> @Html.TextBoxFor(UserModel => UserModel.USERNAME)
+    @Html.ValidationMessageFor(UserModel => UserModel.USERNAME)
     <br />
     <span>Enter Your Password: </span> @Html.PasswordFor(UserModel => UserModel.PASSWORD)
+    @Html.ValidationMessageFor(UserModel => UserModel.PASSWORD)
     <br />
 
     <div class="form-group">
@@ -16,4 +20,5 @@
             <input type="submit" value="Register" class="btn btn-default" formaction="/User/Registration" />
         </div>
     </div>
+</div>
 }
