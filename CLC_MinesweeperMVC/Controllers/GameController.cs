@@ -15,15 +15,20 @@ namespace CLC_MinesweeperMVC.Controllers {
         public static int Difficulty;
         private static GameModel game;
         public static Stopwatch watch = new Stopwatch();
+        private int count=0;
         // GET: Button
         public ActionResult Index(string radioButton) {
+            count++;
             logger.Info("Entered Game Controller Index.");
             watch.Start();
             Difficulty=Int32.Parse(radioButton);
             game=new GameModel(Difficulty);
             ViewBag.message=Difficulty;
-            game.Initialize();
-            return PartialView("_BoardPage", game.myBoard);
+            game.Initialize(Difficulty);
+            if(count<2){
+                Index(radioButton);
+            }
+            return View("_BoardPage", game.myBoard);
         }
 
         // GET: Game
@@ -31,7 +36,7 @@ namespace CLC_MinesweeperMVC.Controllers {
             return View("_BoardPage");
         }
 
-        [HttpPost]
+        [HttpGet]
         public PartialViewResult OnButtonClick(string BoardButtons) {
             logger.Info("Button "+ BoardButtons +" was clicked in Game.");
             game.OnButtonClick(Int32.Parse(BoardButtons));

@@ -10,8 +10,8 @@ namespace CLC_MinesweeperMVC.Models {
     public class GameModel {
         public ImageMap flg = new ImageMap();
         public ImageMap bmb = new ImageMap();
-        public static int Difficulty=1;
-        public static int brdSize=7;
+        public static int Difficulty;
+        public static int brdSize;
         public List<CellModel> buttons = new List<CellModel>();
         public bool isWon = false;
         public CellModel[,] btnGrid = new CellModel[Difficulty*7, Difficulty*7];
@@ -23,13 +23,20 @@ namespace CLC_MinesweeperMVC.Models {
             flg.ImageUrl="~/Images/checkered_flag.bmp";
             bmb.ImageUrl="~/Images/bomb.bmp";
             brdSize=Difficulty*7;
-            if (!myBoard.InPlay)
-            {
+            if (!myBoard.InPlay||myBoard==null){
                 myBoard = new BoardModel(brdSize, Difficulty);
             }
+            Initialize(difficulty);
         }
 
-        public BoardModel Initialize(){
+        public BoardModel Initialize(int difficulty){
+            Difficulty=difficulty;
+            flg.ImageUrl="~/Images/checkered_flag.bmp";
+            bmb.ImageUrl="~/Images/bomb.bmp";
+            brdSize=Difficulty*7;
+            if(!myBoard.InPlay) {
+                myBoard=new BoardModel(brdSize, Difficulty);
+            }
             buttons=myBoard.ConvertGridtoList();
             return myBoard;
         }
@@ -45,7 +52,7 @@ namespace CLC_MinesweeperMVC.Models {
             for(int rw = 0; rw<brdSize; rw++) {
                 for(int cl = 0; cl<brdSize; cl++) {
                     if(myBoard.grid[rw, cl].countValue==buttons[cnt].countValue) {
-
+                        myBoard.grid[rw, cl].visited=true;
                         if(myBoard.grid[rw, cl].live) {
                             myBoard.grid[rw, cl].Image=bmb;
                             isWon=true;
@@ -54,6 +61,7 @@ namespace CLC_MinesweeperMVC.Models {
                         }
                         else {
                             if(myBoard.grid[rw, cl].liveNeighbors==0&&!myBoard.grid[rw, cl].live) {
+                                myBoard.grid[rw, cl].Image=flg;
                                 isWon=false;
                                 watch.Stop();
                                 myBoard.CheckSurround(rw, cl);

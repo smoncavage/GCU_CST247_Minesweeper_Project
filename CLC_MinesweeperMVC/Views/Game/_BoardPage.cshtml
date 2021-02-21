@@ -38,7 +38,7 @@
 }
 
 <div id="boardDetails" style="text-align:center">
-    @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Post, new { id = "myForm" })) {
+    @using(Html.BeginForm("OnButtonClick", "Game", FormMethod.Get, new { id = "myForm" })) {
         <table align="center" id="Table" cellspacing="0">
             @{
                 int count = -1;
@@ -51,7 +51,7 @@
                         var buttonId = count;
                         <td>
 
-                            <button name="BoardButtons" style="width:35px; height:35px;background-color:lightgrey" id="button" type="submit" value="@count" onclick="myFunction()" ondblclick="ShowFlag()">
+                            <button name="BoardButtons" style="width:35px; height:35px;background-color:lightgrey" id="button" type="submit" value="@count" onclick="myFunction()" onabort="ShowFlag()">
 
                                 @if(Model.grid[rw, cl].visited&&Model.grid[rw, cl].live) {
                                     Model.inPlay=false;
@@ -75,4 +75,6 @@
 </div>
 <div>
     <p style="text-align:center; font-family:Stencil">Click to select square. Double-Click for Flag!</p>
+    <br />
+    <button name="Save" style="width:95px; height:55px; background-color:lightgrey" id="saveButton" type="submit" value="Save Game">Save Game</button>
 </div>
