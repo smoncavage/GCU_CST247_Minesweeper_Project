@@ -77,5 +77,10 @@ namespace CLC_MinesweeperMVC.Controllers {
         {
             return View("~/Views/Home/Index.cshtml");
         }
+        [AllowAnonymous]
+        public ActionResult Registration()
+        {
+            return View("~/Views/User/Registration.cshtml");
+        }
     }
 }

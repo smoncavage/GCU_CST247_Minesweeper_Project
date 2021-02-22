@@ -59,5 +59,32 @@ namespace CLC_MinesweeperMVC.Controllers {
             }
         }
 
+        public ActionResult Dashboard()
+        {
+            if (Session["Id"] != null)
+            {
+                return View("~/Views/Login/DashBoard.cshtml");
+            }
+            else
+            {
+                logger.Info("Attempted protected page entry. Re-routed user.");
+                return RedirectToAction("~/Views/Login/Login.cshtml");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View("~/Views/Home/About.cshtml");
+        }
+        [AllowAnonymous]
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View("~/Views/Home/Contact.cshtml");
+        }
     }
 }
