@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace CLC_MinesweeperMVC.Services.Logger {
+namespace Recipe_Shop.Services.Logger {
     public class MyLogger:ILogger {
         private static MyLogger Log;
 

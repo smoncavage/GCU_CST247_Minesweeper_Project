@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CLC_MinesweeperMVC.Services.Logger {
+namespace Recipe_Shop.Services.Logger {
    public interface ILogger {
         void Debug(string message);
         void Info(string message);

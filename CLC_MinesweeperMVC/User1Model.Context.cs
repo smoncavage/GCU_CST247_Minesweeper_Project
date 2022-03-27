@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CLC_MinesweeperMVC
+namespace Recipe_Shop
 {
     using System;
     using System.Data.Entity;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CLC_MinesweeperMVC.Controllers{
+namespace Recipe_Shop.Controllers{
     public class SettingsController : Controller{
         private static NLog.Logger logger = LogManager.GetLogger("myAppLoggerRules");
 

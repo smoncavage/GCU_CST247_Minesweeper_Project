@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Drawing;
-using CLC_MinesweeperMVC.Models;
+using Recipe_Shop.Models;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 using NLog;
 
-namespace CLC_MinesweeperMVC.Controllers {
+namespace Recipe_Shop.Controllers {
     public class GameController:Controller {
         private static NLog.Logger logger = LogManager.GetLogger("myAppLoggerRules");
         public static int Difficulty;

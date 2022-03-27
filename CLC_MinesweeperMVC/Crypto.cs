@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Text;
 
-namespace CLC_MinesweeperMVC {
+namespace Recipe_Shop {
     public class Crypto {
         public static string Hash(string value) {
             return Convert.ToBase64String(

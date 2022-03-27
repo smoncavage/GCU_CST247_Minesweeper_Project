@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 
-namespace CLC_MinesweeperMVC.Models {
+namespace Recipe_Shop.Models {
     public class BoardModel {
         
         public int difficulty;

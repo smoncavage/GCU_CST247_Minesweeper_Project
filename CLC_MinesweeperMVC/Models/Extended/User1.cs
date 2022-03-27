@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace CLC_MinesweeperMVC.Models {
+namespace Recipe_Shop.Models {
     [MetadataType(typeof(UserMetadata))]
     public partial class User1 {
         public string ConfirmPassword { get; set; }

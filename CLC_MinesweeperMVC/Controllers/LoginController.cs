@@ -1,5 +1,5 @@
-﻿using CLC_MinesweeperMVC.Models;
-using CLC_MinesweeperMVC.Services.Business;
+﻿using Recipe_Shop.Models;
+using Recipe_Shop.Services.Business;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using System;
@@ -15,7 +15,7 @@ using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
 using HttpPostAttribute = System.Web.Mvc.HttpPostAttribute;
 using ValidateAntiForgeryTokenAttribute = System.Web.Mvc.ValidateAntiForgeryTokenAttribute;
 
-namespace CLC_MinesweeperMVC.Controllers {
+namespace Recipe_Shop.Controllers {
     
     public class LoginController:Controller {
         // Logger decleration 

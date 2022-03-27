@@ -1,4 +1,4 @@
-﻿using CLC_MinesweeperMVC.Models;
+﻿using Recipe_Shop.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace CLC_MinesweeperMVC.Services.Data {
+namespace Recipe_Shop.Services.Data {
     public class SecurityDAO {
         public bool FindByUser(User user) {
 

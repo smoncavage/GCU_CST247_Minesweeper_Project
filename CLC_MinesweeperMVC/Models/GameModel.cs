@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-using CLC_MinesweeperMVC.Models;
+using Recipe_Shop.Models;
 
-namespace CLC_MinesweeperMVC.Models {
+namespace Recipe_Shop.Models {
     public class GameModel {
         public ImageMap flg = new ImageMap();
         public ImageMap bmb = new ImageMap();

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace CLC_MinesweeperMVC
+namespace Recipe_Shop
 {
     public class BundleConfig2
     {
