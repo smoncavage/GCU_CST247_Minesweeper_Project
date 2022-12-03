@@ -1,44 +1,48 @@
-﻿using Recipe_Shop.Models;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
-namespace Recipe_Shop.Services.Data {
-    public class SecurityDAO {
-        public bool FindByUser(User user) {
+namespace Recipe_Shop.Services.Data
+{
+    public class SecurityDAO
+    {
+        public bool FindByUser(User user)
+        {
 
             //string connectionString = "Server=(localdb)\\MSSQLLocalDB; Initial Catalog=Test; Integrated Security=True; Trusted_Connection=yes;";
             string connectionString = "Server=(localdb)\\MSSQLLocalDB; Initial Catalog=MinesweeperApp; Integrated Security=true; Trusted_Connection=yes;";
             string query = "SELECT * FROM dbo.Users WHERE username=@username AND password=@password";
 
-            using(SqlConnection connection = new SqlConnection(connectionString)) {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Clear();
                 command.Parameters.AddWithValue("@username", user.USERNAME);
                 command.Parameters.AddWithValue("@password", user.PASSWORD);
-                try {
+                try
+                {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if(reader.HasRows) {
+                    if (reader.HasRows)
+                    {
                         return true;
                     }
-                    else {
+                    else
+                    {
                         return false;
                     }
                 }
-                catch(Exception ex) {
+                catch (Exception ex)
+                {
                     Console.WriteLine(ex.Message);
                     return false;
                 }
             }
         }
 
-        public bool AddUser(User user) {
+        public bool AddUser(User user)
+        {
 
             return false;
         }

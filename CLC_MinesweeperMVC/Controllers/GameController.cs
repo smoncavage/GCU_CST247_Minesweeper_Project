@@ -1,60 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Drawing;
+﻿using NLog;
 using Recipe_Shop.Models;
-using System.Web.UI.WebControls;
+using System;
 using System.Diagnostics;
-using NLog;
+using System.Web.Mvc;
 
-namespace Recipe_Shop.Controllers {
-    public class GameController:Controller {
+namespace Recipe_Shop.Controllers
+{
+    public class GameController : Controller
+    {
         private static NLog.Logger logger = LogManager.GetLogger("myAppLoggerRules");
         public static int Difficulty;
         private static GameModel game;
         public static Stopwatch watch = new Stopwatch();
-        private int count=0;
+        private int count = 0;
         // GET: Button
-        public ActionResult Index(string radioButton) {
+        public ActionResult Index(string radioButton)
+        {
             count++;
             logger.Info("Entered Game Controller Index.");
             watch.Start();
-            Difficulty=Int32.Parse(radioButton);
-            game=new GameModel(Difficulty);
-            ViewBag.message=Difficulty;
+            Difficulty = Int32.Parse(radioButton);
+            game = new GameModel(Difficulty);
+            ViewBag.message = Difficulty;
             game.Initialize(Difficulty);
-            if(count<2){
+            if (count < 2)
+            {
                 Index(radioButton);
             }
             return View("_BoardPage", game.myBoard);
         }
 
         // GET: Game
-        public ActionResult Game() {
+        public ActionResult Game()
+        {
             return View("_BoardPage");
         }
 
         [HttpGet]
-        public PartialViewResult OnButtonClick(string BoardButtons) {
-            logger.Info("Button "+ BoardButtons +" was clicked in Game.");
+        public PartialViewResult OnButtonClick(string BoardButtons)
+        {
+            logger.Info("Button " + BoardButtons + " was clicked in Game.");
             game.OnButtonClick(Int32.Parse(BoardButtons));
-            ViewBag.ButtonList=game.buttons;
+            ViewBag.ButtonList = game.buttons;
             return PartialView("_BoardPage", game.myBoard);
         }
 
-        public PartialViewResult BoardPage() {
+        public PartialViewResult BoardPage()
+        {
             return PartialView("_BoardPage", game); ;
         }
 
-        public string OpenPopup() {
+        public string OpenPopup()
+        {
             logger.Info("Game has ended.");
             watch.Stop();
-            if(game.isWon) {
-                return "<h2> You Have Won in "+ watch.Elapsed +"! Congratulations!<h2>";
+            if (game.isWon)
+            {
+                return "<h2> You Have Won in " + watch.Elapsed + "! Congratulations!<h2>";
             }
-            else {
+            else
+            {
                 return "<h2> You Have Hit a Mine! You Lose.<h2>";
             }
         }

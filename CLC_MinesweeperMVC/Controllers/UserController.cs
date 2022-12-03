@@ -1,40 +1,38 @@
-﻿
-
-using Recipe_Shop.Models;
-using Recipe_Shop.Services.Business;
-using NLog;
+﻿using NLog;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Web;
 using System.Web.Mvc;
 
-namespace Recipe_Shop.Controllers{
+namespace Recipe_Shop.Controllers
+{
     [Authorize]
-    public class UserController : Controller{
+    public class UserController : Controller
+    {
         private static NLog.Logger logger = LogManager.GetLogger("myAppLoggerRules");
 
         // GET: Register
         [HttpGet]
-        public ActionResult Registration(){
+        public ActionResult Registration()
+        {
             return View("Registration");
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Registration([Bind(Exclude = "IsEmailVerified,ActivationCode")] User user) {
+        public ActionResult Registration([Bind(Exclude = "IsEmailVerified,ActivationCode")] User user)
+        {
             bool Status = false;
             string message = "";
             //
             // Model Validation 
-            if(ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
 
                 #region //Email is already Exist 
                 var isExist = IsEmailExist(user.EMAIL);
-                if(isExist) {
+                if (isExist)
+                {
                     logger.Error("User attempted to use an email which already exists.");
                     ModelState.AddModelError("EmailExist", "Email already exist");
                     return View(user);
@@ -42,9 +40,9 @@ namespace Recipe_Shop.Controllers{
                 #endregion
 
                 #region Generate Activation Code 
-                user.ActivationCode=Guid.NewGuid();
+                user.ActivationCode = Guid.NewGuid();
                 #endregion
-                
+
                 //Hashing Password for storing in DB, But this is not yet fully functional with log in. 
 
                 //try{
@@ -57,45 +55,53 @@ namespace Recipe_Shop.Controllers{
                 //    Console.WriteLine(e.Message);
                 //}
                 //#endregion
-                user.IsEmailVerified=true;
-                try {
-                #region Save to Database
-                using(MyDBEntities dc = new MyDBEntities()) {
-                    dc.Users.Add(user);
-                    dc.SaveChanges();
+                user.IsEmailVerified = true;
+                try
+                {
+                    #region Save to Database
+                    using (MyDBEntities dc = new MyDBEntities())
+                    {
+                        dc.Users.Add(user);
+                        dc.SaveChanges();
 
-                    //Send Email to User
-                    //SendVerificationLinkEmail(user.EMAIL, user.ActivationCode.ToString());
-                    message="Registration successfully done. Account activation link "+
-                        " has been sent to your email: "+user.EMAIL;
-                    Status=true;
-                }
+                        //Send Email to User
+                        //SendVerificationLinkEmail(user.EMAIL, user.ActivationCode.ToString());
+                        message = "Registration successfully done. Account activation link " +
+                            " has been sent to your email: " + user.EMAIL;
+                        Status = true;
+                    }
                     #endregion
                 }
-                catch(SqlException e) {
+                catch (SqlException e)
+                {
                     Console.WriteLine(e.Message);
                 }
-                logger.Info("New User "+user+"has been added to the database Successfully.");
+                logger.Info("New User " + user + "has been added to the database Successfully.");
             }
-            else {
-                message="Invalid Request";
+            else
+            {
+                message = "Invalid Request";
             }
 
-            ViewBag.Message=message;
-            ViewBag.Status=Status;
+            ViewBag.Message = message;
+            ViewBag.Status = Status;
             // return View(user);
             return View("Registration");
         }
-        public bool IsEmailExist(string email) {
-            using(MyDBEntities dc = new MyDBEntities()) {
-                var v = dc.Users.Where(a => a.EMAIL==email).FirstOrDefault();
-                return v!=null;
+        public bool IsEmailExist(string email)
+        {
+            using (MyDBEntities dc = new MyDBEntities())
+            {
+                var v = dc.Users.Where(a => a.EMAIL == email).FirstOrDefault();
+                return v != null;
             }
         }
-        public bool IsUserExist(string username) {
-            using(MyDBEntities dc = new MyDBEntities()) {
-                var v = dc.Users.Where(a => a.USERNAME==username).FirstOrDefault();
-                return v!=null;
+        public bool IsUserExist(string username)
+        {
+            using (MyDBEntities dc = new MyDBEntities())
+            {
+                var v = dc.Users.Where(a => a.USERNAME == username).FirstOrDefault();
+                return v != null;
             }
         }
         /*public void SendVerificationLinkEmail(string email, string activationCode) {

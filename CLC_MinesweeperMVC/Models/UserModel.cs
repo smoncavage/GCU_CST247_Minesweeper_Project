@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
-namespace Recipe_Shop.Models {
-    public class UserModel {
+namespace Recipe_Shop.Models
+{
+    public class UserModel
+    {
         // Properties for the User 
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -18,7 +16,8 @@ namespace Recipe_Shop.Models {
         public string username { get; set; }
         public string password { get; set; }
     }
-    public class UsersDBContext:DbContext {
+    public class UsersDBContext : DbContext
+    {
         public DbSet<UserModel> Users { get; set; }
     }
 }
