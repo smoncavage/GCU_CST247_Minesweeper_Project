@@ -1126,8 +1126,39 @@ $.extend($.validator, {
 		
 		// http://docs.jquery.com/Plugins/Validation/Methods/email
 		email: function(value, element) {
-			// contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
-			return this.optional(element) || /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(value);
+			if (this.optional(element)) {
+				return true;
+			}
+
+			// Avoid catastrophic backtracking from a highly complex regex by using
+			// deterministic checks plus URL parsing for "mailto:" addresses.
+			var atIndex = value.indexOf("@");
+			if (atIndex <= 0 || atIndex !== value.lastIndexOf("@") || atIndex === value.length - 1) {
+				return false;
+			}
+
+			var localPart = value.slice(0, atIndex);
+			var domainPart = value.slice(atIndex + 1);
+
+			if (!localPart || !domainPart) {
+				return false;
+			}
+
+			// Reject clearly invalid dot placement.
+			if (
+				localPart.charAt(0) === "." || localPart.charAt(localPart.length - 1) === "." ||
+				domainPart.charAt(0) === "." || domainPart.charAt(domainPart.length - 1) === "." ||
+				localPart.indexOf("..") !== -1 || domainPart.indexOf("..") !== -1
+			) {
+				return false;
+			}
+
+			try {
+				var parsedEmail = new URL("mailto:" + value);
+				return /^mailto:$/i.test(parsedEmail.protocol) && parsedEmail.pathname === value;
+			} catch (e) {
+				return false;
+			}
 		},
 	
 		// http://docs.jquery.com/Plugins/Validation/Methods/url
