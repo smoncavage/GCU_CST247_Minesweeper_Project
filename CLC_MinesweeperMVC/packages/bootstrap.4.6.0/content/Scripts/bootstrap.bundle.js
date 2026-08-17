@@ -1113,7 +1113,13 @@
         return;
       }
 
-      var target = $__default['default'](selector)[0];
+      var target = null;
+
+      try {
+        target = document.querySelector(selector);
+      } catch (_) {
+        return;
+      }
 
       if (!target || !$__default['default'](target).hasClass(CLASS_NAME_CAROUSEL)) {
         return;
