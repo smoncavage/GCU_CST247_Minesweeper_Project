@@ -1114,7 +1114,7 @@
         return;
       }
 
-      var target = $__default['default'](selector)[0];
+      var target = document.querySelector(selector);
 
       if (!target || !$__default['default'](target).hasClass(CLASS_NAME_CAROUSEL)) {
         return;
