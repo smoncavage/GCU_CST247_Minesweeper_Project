@@ -76,7 +76,8 @@ namespace Recipe_Shop.Controllers
                 {
                     Console.WriteLine(e.Message);
                 }
-                logger.Info("New User " + user + "has been added to the database Successfully.");
+                string safeEmailForLog = (user?.EMAIL ?? string.Empty).Replace("\r", "").Replace("\n", "");
+                logger.Info("New User {0} has been added to the database Successfully.", safeEmailForLog);
             }
             else
             {
