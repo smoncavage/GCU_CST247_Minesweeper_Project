@@ -19,7 +19,7 @@ namespace Recipe_Shop.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Registration([Bind(Exclude = "IsEmailVerified,ActivationCode")] User user)
         {
             bool Status = false;
