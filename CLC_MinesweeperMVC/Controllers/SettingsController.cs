@@ -15,6 +15,7 @@ namespace Recipe_Shop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         // Difficulty paramater being passed to index()
         public ActionResult OnSelectDifficulty(string radioButton)
         {
