@@ -684,7 +684,23 @@ $.extend( $.validator, {
 		},
 
 		clean: function( selector ) {
-			return $( selector )[ 0 ];
+			if ( selector == null ) {
+				return selector;
+			}
+
+			if ( selector.nodeType ) {
+				return selector;
+			}
+
+			if ( selector.jquery || selector.length ) {
+				return selector[ 0 ];
+			}
+
+			if ( typeof selector === "string" ) {
+				return $.find( selector, this.currentForm )[ 0 ];
+			}
+
+			return selector;
 		},
 
 		errors: function() {
