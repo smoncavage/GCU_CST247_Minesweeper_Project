@@ -76,8 +76,8 @@ namespace Recipe_Shop.Controllers
                 {
                     Console.WriteLine(e.Message);
                 }
-                string safeEmailForLog = (user?.EMAIL ?? string.Empty).Replace("\r", "").Replace("\n", "");
-                logger.Info("New User {0} has been added to the database Successfully.", safeEmailForLog);
+                string maskedEmailForLog = MaskEmailForLog((user?.EMAIL ?? string.Empty).Replace("\r", "").Replace("\n", ""));
+                logger.Info("New User {0} has been added to the database Successfully.", maskedEmailForLog);
             }
             else
             {
@@ -139,5 +139,22 @@ namespace Recipe_Shop.Controllers
                     Console.WriteLine(e.Message);
                 }
         }*/
+        private static string MaskEmailForLog(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return "redacted";
+            }
+
+            int atIndex = email.IndexOf('@');
+            if (atIndex <= 1 || atIndex == email.Length - 1)
+            {
+                return "redacted";
+            }
+
+            string localPart = email.Substring(0, atIndex);
+            string domainPart = email.Substring(atIndex);
+            return localPart.Substring(0, 1) + "***" + domainPart;
+        }
     }
 }
