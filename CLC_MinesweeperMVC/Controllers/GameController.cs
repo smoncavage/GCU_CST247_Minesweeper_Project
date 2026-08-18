@@ -39,7 +39,8 @@ namespace Recipe_Shop.Controllers
         [HttpGet]
         public PartialViewResult OnButtonClick(string BoardButtons)
         {
-            logger.Info("Button " + BoardButtons + " was clicked in Game.");
+            string safeBoardButtons = (BoardButtons ?? string.Empty).Replace("\r", "").Replace("\n", "");
+            logger.Info("Button " + safeBoardButtons + " was clicked in Game.");
             game.OnButtonClick(Int32.Parse(BoardButtons));
             ViewBag.ButtonList = game.buttons;
             return PartialView("_BoardPage", game.myBoard);
