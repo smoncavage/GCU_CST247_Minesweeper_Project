@@ -44,7 +44,8 @@ namespace Recipe_Shop.Controllers
                     }
                 }
             }
-            logger.Info(user + " has logged in.");
+            var safeUsername = (user?.USERNAME ?? string.Empty).Replace("\r", string.Empty).Replace("\n", string.Empty);
+            logger.Info("{0} has logged in.", safeUsername);
             ModelState.AddModelError("", "Invalid Username or Password");
             return View("~/Views/Login/LoginFailed.cshtml");
         }
